@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/book_store/static/css/main.30f96418.css",
-    "main.js": "/book_store/static/js/main.ebe06bfd.js",
+    "main.js": "/book_store/static/js/main.b9611e55.js",
     "static/js/453.d3d39a9b.chunk.js": "/book_store/static/js/453.d3d39a9b.chunk.js",
     "static/media/Montserrat-Bold.woff2": "/book_store/static/media/Montserrat-Bold.74353369e12619cf924f.woff2",
     "static/media/Montserrat-ExtraBold.woff2": "/book_store/static/media/Montserrat-ExtraBold.2513e770576523e58192.woff2",
@@ -26,11 +26,11 @@
     "static/media/close_icon.svg": "/book_store/static/media/close_icon.90a70014b365b7fb9aa0c5267bebeca3.svg",
     "static/media/navigate_arrow.svg": "/book_store/static/media/navigate_arrow.f991754ff98af093500128240b0d2715.svg",
     "main.30f96418.css.map": "/book_store/static/css/main.30f96418.css.map",
-    "main.ebe06bfd.js.map": "/book_store/static/js/main.ebe06bfd.js.map",
+    "main.b9611e55.js.map": "/book_store/static/js/main.b9611e55.js.map",
     "453.d3d39a9b.chunk.js.map": "/book_store/static/js/453.d3d39a9b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.30f96418.css",
-    "static/js/main.ebe06bfd.js"
+    "static/js/main.b9611e55.js"
   ]
 }
