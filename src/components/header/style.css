@@ -1,0 +1,156 @@
+.header {
+    width: 80%;
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__home-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 195px;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.header__home-link:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.header__logo {
+    width: 42px;
+}
+
+.header__title {
+    color: rgba(77, 41, 0, 1);
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.header__link {
+    color: rgba(36, 20, 0, 1);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+    transition: 0.4s;
+}
+
+.header__link:not(:last-of-type) {
+    margin-right: 30px;
+}
+
+.header__link:hover {
+    opacity: 0.5;
+} 
+
+.header__search {
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px rgba(105, 103, 100, 0.59);
+}
+
+.header__search-input {
+    border: none;
+    width: 190px;
+    margin-left: 7px;
+    background: none;
+}
+
+.header__search-input:focus {
+    outline: none;
+}
+
+.header__basket {
+    transition: 0.4s;
+}
+
+.header__basket:hover {
+    transform: scale(1.1);
+}
+
+.header__basket-image {
+    width: 30px;
+}
+
+.header__menu-button {
+    display: none;
+    background: none;
+    border: none;
+}
+
+.header__popup {
+    display: none;
+    z-index: 1;
+    transform: translateX(295px);
+    transition: 0.7s;
+}
+
+.header__popup__close {
+    background: none;
+    border: none;
+    align-self: flex-start;
+}
+
+.header__search__popup {
+    display: none;
+    margin-top: 20px;
+    width: 220px;
+    margin-bottom: 20px;
+}
+
+.header__search-input__popup {
+    color: white;
+}
+
+@media screen and (max-width: 1150px) {
+    .header {
+        width: 95%;
+    }
+
+    .header__navbar {
+        display: none;
+    }
+
+    .header__menu-button {
+        display: block;
+    }
+
+    .header__popup {
+        display: flex;
+        position:fixed;
+        width: 250px;
+        height: 100vh;
+        align-items: end;
+        flex-direction: column;
+        right: 0;
+        top: 0;
+        background-color: rgba(77, 41, 0, 1);
+        padding: 20px 20px;
+    }
+
+    .header__navbar__popup {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header__link__popup {
+        width: 100%;
+        font-size: 18px;
+        color: white;
+        margin-bottom: 10px;
+        text-align: end;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .header__search {
+        display: none;
+    }
+
+    .header__search__popup {
+        display: block;
+    }
+}
