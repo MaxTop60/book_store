@@ -1,16 +1,14 @@
+import navArrow from "../../img/navigate_arrow.svg";
+import facebook_icon from "../../img/facebook_icon.svg";
+import twitter_icon from "../../img/twitter_icon.svg";
+import vk_icon from "../../img/vk_icon.svg";
+import inst_icon from "../../img/inst_icon.svg";
+import youtube_icon from "../../img/youtube_icon.svg";
 
-import newsBooks from "../img/news_books.png";
-import arrow from "../img/news__arrow.svg";
-import navArrow from "../img/navigate_arrow.svg";
-import facebook_icon from "../img/facebook_icon.svg";
-import twitter_icon from "../img/twitter_icon.svg";
-import vk_icon from "../img/vk_icon.svg";
-import inst_icon from "../img/inst_icon.svg";
-import youtube_icon from "../img/youtube_icon.svg";
-import news_back from "../img/news_back.png";
+import "./style.css";
 
-import { BooksList } from "../helpers/BooksList/BooksList";
-import Book from "../components/Book/Book";
+import { BooksList } from "../../helpers/BooksList/BooksList";
+import Book from "../../components/Book/Book";
 
 import { Link } from "react-router-dom";
 
@@ -47,7 +45,7 @@ const Home = () => {
                 <section className="new-products">
                     <h1 className="new-products__title">Горячие поступления</h1>
                     <div className="new-products__container">
-                        <img src={navArrow} alt="" onClick={scrollLeft} className="new-products__nav-button new-products__nav-button_back" />
+                        <img src={navArrow} alt="Назад" onClick={scrollLeft} className="new-products__nav-button new-products__nav-button_back" />
                         <ul className="new-products__books">
                             {
                                 BooksList.map((book) => {
@@ -61,7 +59,7 @@ const Home = () => {
                                 })
                             }
                         </ul>
-                        <img src={navArrow} alt="" onClick={scrollRight} className="new-products__nav-button new-products__nav-button_next"  />
+                        <img src={navArrow} alt="Вперёд" onClick={scrollRight} className="new-products__nav-button new-products__nav-button_next"  />
                     </div>
                 </section>
 

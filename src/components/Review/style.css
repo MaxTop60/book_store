@@ -1,0 +1,36 @@
+.reviews__item {
+    width: 250px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: grey 0 0 10px 5px;
+    padding: 0 20px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 0;
+}
+
+.reviews__item__user-name {
+    font-size: 20px;
+}
+
+.reviews__item__mark {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+}
+
+.reviews__item__title {
+    font-size: 25px;
+}
+
+.reviews__item__mark-value {
+    font-size: 20px;
+}
+
+.reviews__item__text{
+    max-height: 270px;
+    overflow: auto;
+}
