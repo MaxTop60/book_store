@@ -34,6 +34,7 @@ const Product = (props) => {
 
       const review = document.querySelector('.reviews__form__put-review').value;
       const marks = document.querySelectorAll('.reviews__form__star');
+      const starsLabels = document.querySelectorAll('.reviews__form__star-label');
 
       let mark
       marks.forEach(el => {
@@ -64,7 +65,13 @@ const Product = (props) => {
 
       console.log(newReview);
       
-      addReview(newReview);  
+      addReview(newReview); 
+      
+      starsLabels.forEach(elem => {
+        elem.classList.remove("reviews__form__star-label_active");
+      })
+
+      document.querySelector('.reviews__form').reset()
     }
 
     function addReview(newReview) {
