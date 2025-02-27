@@ -19,16 +19,13 @@ const Product = (props) => {
         elem.classList.remove("reviews__form__star-label_active");
       })
 
-      if (!star.checked) {
+      if (star.checked === false) {
         starsLabels.forEach((elem) => {
           if (parseInt(elem.htmlFor[elem.htmlFor.length - 1]) <= parseInt(star.id[star.id.length - 1])) {
             elem.classList.add("reviews__form__star-label_active");
+            star.checked = true;
           }
         })
-      }
-      
-      else {
-        star.checked = false;
       }
     }
 
@@ -44,6 +41,20 @@ const Product = (props) => {
           mark = parseInt(el.id[el.id.length - 1]);
         } 
       });
+
+      let isSelectedMark = false;
+
+      document.querySelectorAll('.reviews__form__star-label').forEach(el => {
+        if (el.classList.contains("reviews__form__star-label_active")) {
+          isSelectedMark = true;
+        }
+      })
+
+      if (!review || !isSelectedMark) {
+        alert("Пожалуйста, заполните все поля");
+        return;
+      }
+
       const newReview = {
         userID: 0,
         userName: "Максим",
@@ -81,23 +92,23 @@ const Product = (props) => {
               <h1 className="reviews__form__title">Оцените товар и оставьте комментарий</h1>
 
               <div className="reviews__form__rating">
-                <input type="radio" id="star5" name="star" className="reviews__form__star"/>
+                <input type="radio" id="star5" name="star" className="reviews__form__star" required />
                 <label onClick={selectMark} htmlFor="star5" className="reviews__form__star-label"></label>
 
-                <input type="radio" id="star4" name="star" className="reviews__form__star"/>
+                <input type="radio" id="star4" name="star" className="reviews__form__star" required />
                 <label onClick={selectMark} htmlFor="star4" className="reviews__form__star-label"></label>
 
-                <input type="radio" id="star3" name="star" className="reviews__form__star"/>
+                <input type="radio" id="star3" name="star" className="reviews__form__star" required />
                 <label onClick={selectMark} htmlFor="star3" className="reviews__form__star-label"></label>
 
-                <input type="radio" id="star2" name="star" className="reviews__form__star"/>
+                <input type="radio" id="star2" name="star" className="reviews__form__star" required />
                 <label onClick={selectMark} htmlFor="star2" className="reviews__form__star-label"></label>
 
-                <input type="radio" id="star1" name="star" className="reviews__form__star"/>
+                <input type="radio" id="star1" name="star" className="reviews__form__star" required />
                 <label onClick={selectMark} htmlFor="star1" className="reviews__form__star-label"></label>
               </div>
 
-              <input type="text" className="reviews__form__put-review" placeholder="Оставьте комментарий" />
+              <input type="text" className="reviews__form__put-review" placeholder="Оставьте комментарий" required />
 
               <button type="submit" onClick={formSubmit} className="reviews__form__submit">Отправить</button>
             </form>
