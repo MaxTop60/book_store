@@ -86,6 +86,7 @@ const Product = (props) => {
             <div className="product-info__about">
               <h1 className="product-info__title">{item.title}</h1>
               <h2 className="product-info__author">{item.author}</h2>
+              <h2 className="product-info__price">{item.price}</h2>
 
               <div className="product-info__links">
                 <Link className="product-info__link product-info__link_buy">Купить сейчас</Link>

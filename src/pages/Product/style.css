@@ -137,9 +137,10 @@
 .reviews__container {
     display: flex;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 70px;
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
     gap: 80px;
     list-style-type: none;
     align-self: center;
