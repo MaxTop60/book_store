@@ -7,7 +7,7 @@ import youtube_icon from "../../img/youtube_icon.svg";
 
 import "./style.css";
 
-import { BooksList } from "../../helpers/BooksList/BooksList";
+import { BooksList } from "../../helpers/BooksList";
 import Book from "../../components/Book/Book";
 
 import { Link } from "react-router-dom";

@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
-import { BooksList } from "../../helpers/BooksList/BooksList";
+import { BooksList } from "../../helpers/BooksList";
 import Review from "../../components/Review/Review";
 
 import "./style.css";

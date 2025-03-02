@@ -1,7 +1,7 @@
-import book01 from "../../img/book01.svg";
-import book02 from "../../img/book02.svg";
-import book04 from "../../img/book04.svg";
-import book05 from "../../img/book05.svg";
+import book01 from "../img/book01.svg";
+import book02 from "../img/book02.svg";
+import book04 from "../img/book04.svg";
+import book05 from "../img/book05.svg";
 
 const BooksList = [
     {

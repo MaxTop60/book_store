@@ -51,7 +51,7 @@ const Header = () => {
             <input type="text" className="header__search-input" placeholder="Поиск"/>
             </div>
 
-            <Link to="" className="header__basket"><img src={basket} alt="Корзина" className="header__basket-image"/></Link>
+            <Link to="/basket" className="header__basket"><img src={basket} alt="Корзина" className="header__basket-image"/></Link>
 
             <button className="header__menu-button" onClick={openMenu}><img src={menu_button} alt="Открыть меню" className="header__menu-button-img" /></button>
 

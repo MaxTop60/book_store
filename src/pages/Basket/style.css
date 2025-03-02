@@ -1,0 +1,14 @@
+.basket {
+    width: 88%;
+    margin: auto;
+}
+
+.basket__title {
+    font-weight: 900;
+}
+
+.basket__container {
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+}
