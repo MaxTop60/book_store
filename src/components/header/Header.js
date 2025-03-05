@@ -41,7 +41,6 @@ const Header = () => {
 
             <nav className="header__navbar">
                 <NavLink to="/book_store/" onClick={() => {scrollToSection("catalog");}} className="header__link">Каталог</NavLink>
-                <NavLink to="/book_store/" onClick={() => {scrollToSection("delivery");}} className="header__link">Доставка</NavLink>
                 <NavLink to="/book_store/" onClick={() => {scrollToSection("about");}} className="header__link">О магазине</NavLink>
                 <NavLink to="/book_store/" onClick={() => {scrollToSection("contacts")}} className="header__link">Блог</NavLink>
             </nav>
@@ -65,7 +64,6 @@ const Header = () => {
 
                 <nav className="header__navbar header__navbar__popup">
                 <NavLink to="/book_store/" onClick={() => {scrollToSection("catalog");}} className="header__link header__link__popup">Каталог</NavLink>
-                <NavLink to="/book_store/" onClick={() => {scrollToSection("delivery");}} className="header__link header__link__popup">Доставка</NavLink>
                 <NavLink to="/book_store/" onClick={() => {scrollToSection("about");}} className="header__link header__link__popup">О магазине</NavLink>
                 <NavLink to="/book_store/" onClick={() => {scrollToSection("contacts")}} className="header__link header__link__popup">Блог</NavLink>
                 </nav>

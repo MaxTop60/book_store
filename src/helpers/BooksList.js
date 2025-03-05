@@ -6,7 +6,7 @@ import book05 from "../img/book05.svg";
 const BooksList = [
     {
         img: book01,
-        price: "899 руб.",
+        price: 899,
         title: "Порядок в хаосе",
         author: "Константин Коптелов",
         reviews: [
@@ -51,7 +51,7 @@ const BooksList = [
 
     {
         img: book02,
-        price: "649 руб.",
+        price: 649,
         title: "Смарагдова книга",
         author: "Керстин Гир",
         reviews: [
@@ -96,7 +96,7 @@ const BooksList = [
 
     {
         img: book04,
-        price: "599 руб.",
+        price: 599,
         title: "Мотиватор",
         author: "Наталья Зотова",
         reviews: [
@@ -141,7 +141,7 @@ const BooksList = [
 
     {
         img: book05,
-        price: "1499 руб.",
+        price: 1499,
         title: "Без маски",
         author: "Михаил Бурняшев",
         reviews: [
@@ -186,7 +186,7 @@ const BooksList = [
 
     {
         img: book05,
-        price: "1499 руб.",
+        price: 1499,
         title: "Без маски",
         author: "Михаил Бурняшев",
         reviews: [
@@ -231,7 +231,7 @@ const BooksList = [
     
     {
         img: book05,
-        price: "1499 руб.",
+        price: 1499,
         title: "Без маски",
         author: "Михаил Бурняшев",
         reviews: [

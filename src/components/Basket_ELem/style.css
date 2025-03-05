@@ -9,6 +9,8 @@
     padding: 30px 20px;
     box-shadow: rgba(198, 198, 198, 0.457) 0 0 10px 5px;
     border-radius: 10px;
+    text-decoration: none;
+    color: black;
 }
 
 .basket__elem__info-block {
@@ -43,7 +45,7 @@
     background-color: rgba(198, 198, 198, 0.957);
 }
 
-@media screen and (max-width: 1002px) {
+@media screen and (max-width: 1025px) {
     .basket__elem {
         justify-content: space-between;
         padding: 30px 50px;

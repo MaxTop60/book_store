@@ -9,6 +9,7 @@ import Basket from "./pages/Basket/Basket.js";
 import Footer from "./components/Footer/Footer.js";
 
 function App() {
+
   return (
     <div className="App">
       <Router>

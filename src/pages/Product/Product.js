@@ -1,7 +1,10 @@
-import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useState} from "react";
 import { BooksList } from "../../helpers/BooksList";
+import { BasketList } from "../../helpers/BasketList";
 import Review from "../../components/Review/Review";
+
+import popupClose from '../../img/close_icon_dark.png';
 
 import "./style.css";
 
@@ -9,6 +12,21 @@ const Product = (props) => {
     const { id } = useParams();
     const item = BooksList[id];
     const [reviews, setReviews] = useState(item.reviews);
+    const [counter, setCounter] = useState(0);
+
+    function openPopup(popup) {
+      popup.style.display = 'block';
+      setTimeout(function () {
+          popup.style.opacity = '1';
+      }, 10);
+  }
+
+  function closePopup(popup) {
+      popup.style.opacity = '0';
+      setTimeout(function () {
+          popup.style.display = 'none';
+      }, 100)
+  }
 
     function selectMark(event) {
       let starLabel = event.target;
@@ -78,6 +96,32 @@ const Product = (props) => {
       setReviews(prevReviews => [newReview, ...prevReviews]);
     }
 
+    function numberPlus(event) {
+      BasketList.find((el) => el.id === item.id).number++;
+      event.target.previousElementSibling.innerText = item.number;
+    }
+    
+    function numberMinus(event) {
+        if (item.number > 1) {
+            BasketList.find((el) => el.id === item.id).number--;
+            event.target.nextElementSibling.innerText = item.number;
+            BasketList.find((el) => el.id === item.id).number = item.number;
+        } else {
+            BasketList.pop(item);
+
+            setCounter(counter + 1);
+        }
+    }
+    
+    function toBasket(event) {
+        event.target.style.display = 'none';
+        item.number = 1;
+        BasketList.push(item);
+
+        setCounter(counter + 1);
+    }
+    
+
     return (
         <main className="main">
           <section className="product-info">
@@ -86,11 +130,20 @@ const Product = (props) => {
             <div className="product-info__about">
               <h1 className="product-info__title">{item.title}</h1>
               <h2 className="product-info__author">{item.author}</h2>
-              <h2 className="product-info__price">{item.price}</h2>
+              <h2 className="product-info__price">{item.price} руб.</h2>
 
               <div className="product-info__links">
-                <Link className="product-info__link product-info__link_buy">Купить сейчас</Link>
-                <Link className="product-info__link product-info__link_to-basket">В корзину</Link>
+                <button className="product-info__link product-info__link_buy" onClick={() => openPopup(document.querySelector('.popup'))}>Купить сейчас</button>
+
+                {
+                  BasketList.find((el) => el.id === item.id) 
+                    ? <div className="basket__elem__num-of-products" >
+                        <button className="basket__elem__num-of-products__button" onClick={(numberMinus)}>-</button>
+                        <h2 className="basket__elem__num-of-products__number">{BasketList.find((el) => el.id === item.id).number}</h2>
+                        <button className="basket__elem__num-of-products__button" onClick={(numberPlus)}>+</button>
+                      </div>
+                    : <button className="product-info__link product-info__link_to-basket" onClick={toBasket}>В корзину</button>
+                }
               </div>
             </div>
           </section>
@@ -131,6 +184,23 @@ const Product = (props) => {
               }
             </ul>
           </section>
+
+          <div className="popup popup-pay">
+                <button className="popup__close popup-pay__close" onClick={(event) => closePopup(event.target.closest('.popup'))}><img src={popupClose} alt="" className="popup__close__img popup-pay__close__img" /></button>
+
+                <form className="popup__form popup-pay__form">
+                    <h1 className="popup__title popup-pay__title">Введите данные для оплаты</h1>
+
+                    <div className="popup-pay__inputs">
+                        <input className="popup-pay__input popup-pay__card-number__input" placeholder="Номер карты" required type="text" id="card-number" name="card-number" inputMode="numeric" autoComplete="cc-number" pattern="[0-9]+" />
+                        <input className="popup-pay__input popup-pay__date__input popup-pay__input-short" required type="text" id="expiry-date" name="expiry-date" autoComplete="cc-exp" placeholder="MM/YY" minLength="4" pattern="[0-9/]+" />
+                        <input className="popup-pay__input popup-pay__code__input popup-pay__input-short" placeholder="CVC2/CVV2"required type="text" id="security-code" name="security-code" inputMode="numeric" minLength="3" maxLength="4" pattern="[0-9]+" />
+                        <input type="text" placeholder="Введите адрес доставки" className="popup-pay__input popup-pay__adress__input" required/>
+                    </div>
+
+                    <button className="popup__button popup-pay__button">Оплатить {item.price}</button>
+                </form>
+          </div>
         </main>
       );
 }

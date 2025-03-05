@@ -201,34 +201,6 @@
     font-size: 13px;
 }
 
-.delivery {
-    max-width: 1170px;
-    margin: 100px auto 0;
-    text-align: center;
-}
-
-.delivery__title {
-    font-weight: 900;
-}
-
-.delivery__text {
-    margin-top: 55px;
-    font-size: 14px;
-    line-height: 28.5px;
-}
-
-.delivery__link {
-    text-decoration: none;
-    color: rgba(36, 20, 0, 1);
-    font-size: 14px;
-    font-weight: bold;
-    transition: 0.4s;
-}
-
-.delivery__link:hover {
-    opacity: 0.5;
-}
-
 .contacts {
     margin: 100px auto 0;
     text-align: center;
