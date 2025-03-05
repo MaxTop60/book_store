@@ -10,6 +10,7 @@ import "./style.css";
 
 const Basket = () => {
     let [sum, setSum] = useState(0);
+    let [count, setCount] = useState(0);
 
     const newSum = useMemo(() => {
         return BasketList.reduce((acc, elem) => acc + elem.price * elem.number, 0);
@@ -41,8 +42,7 @@ const Basket = () => {
         if (number === 1) {
             let result = window.confirm('Удалить товар из корзины?');
             if (result) {
-                let elem = event.target.closest('.basket__elem');
-                elem.remove();
+                setCount(count + 1);
             }
         } 
 

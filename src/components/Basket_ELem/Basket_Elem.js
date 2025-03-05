@@ -26,6 +26,8 @@ const Basket_Elem = (props) => {
                         if (number > 1) {
                             setNumber(number - 1);
                             BasketList.find((el) => el.id === props.id).number = number - 1;
+                        } else {
+                            BasketList.pop(BasketList.find((el) => el.id === props.id));
                         }
                         }}>-</button>
                     <h2 className="basket__elem__num-of-products__number">{number}</h2>
