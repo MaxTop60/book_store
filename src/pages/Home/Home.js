@@ -66,15 +66,15 @@ const Home = () => {
                 <section className="catalog" id="catalog">
                     <h1 className="catalog__title">Каталог</h1>
                     <div className="catalog__items">
-                        <Link className="catalog__item">Книги</Link>
-                        <Link className="catalog__item">Электронные книги</Link>
-                        <Link className="catalog__item">Аудиокниги</Link>
-                        <Link className="catalog__item">Игрушки, творчество</Link>
-                        <Link className="catalog__item">Книжные аксессуары</Link>
-                        <Link className="catalog__item">Блокноты</Link>
-                        <Link className="catalog__item">Настольные игры</Link>
-                        <Link className="catalog__item">Подарки</Link>
-                        <Link className="catalog__item">Акции</Link>
+                        <Link className="catalog__item" to="/category/books?name=Книги">Книги</Link>
+                        <Link className="catalog__item" to='/category/el-books?name=Электронные книги'>Электронные книги</Link>
+                        <Link className="catalog__item" to='/category/audio-books?name=Аудиокнинги'>Аудиокниги</Link>
+                        <Link className="catalog__item" to='/category/toys?name=Игрушки, творчество'>Игрушки, творчество</Link>
+                        <Link className="catalog__item" to='/category/accessories?name=Книжные аксессуары'>Книжные аксессуары</Link>
+                        <Link className="catalog__item" to='/category/notebooks?name=Блокноты'>Блокноты</Link>
+                        <Link className="catalog__item" to='/category/table-games?name=Настольные игры'>Настольные игры</Link>
+                        <Link className="catalog__item" to='/category/presents?name=Подарки'>Подарки</Link>
+                        <Link className="catalog__item" to='/category/stocks?name=Акции'>Акции</Link>
                     </div>
                 </section>
 

@@ -9,6 +9,7 @@ const BooksList = [
         price: 899,
         title: "Порядок в хаосе",
         author: "Константин Коптелов",
+        category: ['books', 'stocks'],
         reviews: [
             {
                 userID: 0,
@@ -54,6 +55,7 @@ const BooksList = [
         price: 649,
         title: "Смарагдова книга",
         author: "Керстин Гир",
+        category: ['books', 'stocks'],
         reviews: [
             {
                 userID: 0,
@@ -99,6 +101,7 @@ const BooksList = [
         price: 599,
         title: "Мотиватор",
         author: "Наталья Зотова",
+        category: ['books', 'stocks'],
         reviews: [
             {
                 userID: 0,
@@ -144,6 +147,7 @@ const BooksList = [
         price: 1499,
         title: "Без маски",
         author: "Михаил Бурняшев",
+        category: ['books'],
         reviews: [
             {
                 userID: 0,
@@ -189,6 +193,7 @@ const BooksList = [
         price: 1499,
         title: "Без маски",
         author: "Михаил Бурняшев",
+        category: ['books'],
         reviews: [
             {
                 userID: 0,
@@ -234,6 +239,7 @@ const BooksList = [
         price: 1499,
         title: "Без маски",
         author: "Михаил Бурняшев",
+        category: ['books'],
         reviews: [
             {
                 userID: 0,
