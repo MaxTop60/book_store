@@ -42,15 +42,15 @@ const Header = () => {
 
     return (  
         <header className="header">
-            <Link className="header__home-link" to="/">
+            <Link className="header__home-link" to="/book_store">
                 <img src={logo} alt="Логотип" className="header__logo"/>
                 <h1 className="header__title">BOOK STORE</h1>
             </Link>
 
             <nav className="header__navbar">
-                <NavLink to="/" onClick={() => {scrollToSection("catalog");}} className="header__link">Каталог</NavLink>
-                <NavLink to="/" onClick={() => {scrollToSection("about");}} className="header__link">О магазине</NavLink>
-                <NavLink to="/" onClick={() => {scrollToSection("contacts")}} className="header__link">Блог</NavLink>
+                <NavLink to="/book_store" onClick={() => {scrollToSection("catalog");}} className="header__link">Каталог</NavLink>
+                <NavLink to="/book_store" onClick={() => {scrollToSection("about");}} className="header__link">О магазине</NavLink>
+                <NavLink to="/book_store" onClick={() => {scrollToSection("contacts")}} className="header__link">Блог</NavLink>
             </nav>
 
             <div className="header__search">
@@ -103,7 +103,7 @@ const Header = () => {
                 <div className="header__search header__search__popup">
 
                     <div className="header__search__input-block">
-                        <img src={search} alt="Поиск" className="header__search-logo"/>
+                        <img src={search_light} alt="Поиск" className="header__search-logo"/>
                         <input type="text" className="header__search-input" placeholder="Поиск" onChange={
                             (event) => {
                                 document.querySelector(".header__search__container__popup").style.display = "flex";
@@ -137,9 +137,9 @@ const Header = () => {
                 </div>
 
                 <nav className="header__navbar header__navbar__popup">
-                <NavLink to="/" onClick={() => {scrollToSection("catalog");}} className="header__link header__link__popup">Каталог</NavLink>
-                <NavLink to="/" onClick={() => {scrollToSection("about");}} className="header__link header__link__popup">О магазине</NavLink>
-                <NavLink to="/" onClick={() => {scrollToSection("contacts")}} className="header__link header__link__popup">Блог</NavLink>
+                <NavLink to="/book_store" onClick={() => {scrollToSection("catalog");}} className="header__link header__link__popup">Каталог</NavLink>
+                <NavLink to="/book_store" onClick={() => {scrollToSection("about");}} className="header__link header__link__popup">О магазине</NavLink>
+                <NavLink to="/book_store" onClick={() => {scrollToSection("contacts")}} className="header__link header__link__popup">Блог</NavLink>
                 </nav>
 
                 <Link to="/auth" className="header__auth header__auth__popup">Войти</Link>
