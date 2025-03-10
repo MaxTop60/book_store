@@ -18,9 +18,25 @@
     font-weight: 900;
 }
 
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    height: 100%;
+    margin: 0;
 }
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.content {
+    flex: 1;
+    /* Занимает всё доступное пространство */
+    padding: 20px;
+}
+
 
 .root {
     font-family: 'Montserrat';

@@ -81,6 +81,12 @@
     opacity: 0;
     transition: opacity 0.15s ease-in-out;
     display: none;
+    max-height: 80vh;
+    overflow: auto;
+}
+
+.maps {
+    width: 88%;
 }
 
 .popup__close {
@@ -113,6 +119,10 @@
     align-items: center;
 }
 
+.pickup {
+    display: none;
+}
+
 .popup__title {
     text-align: center;
 }
@@ -127,6 +137,34 @@
 
 .delivery-popup__input:focus {
     outline: none;
+}
+
+.delivery-popup__change {
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.delivery-popup__change-button {
+    height: 40px;
+    width: 150px;
+    background-color: rgba(128, 128, 128, 0.498);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delivery-popup__change-button:hover {
+    transform: scale(1.05);
+}
+
+.delivery-popup__change-button_active {
+    background-color: rgba(225, 106, 0, 1);
+    color: white;
 }
 
 .popup__button {

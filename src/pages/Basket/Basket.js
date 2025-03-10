@@ -1,10 +1,12 @@
 import Basket_Elem from "../../components/Basket_ELem/Basket_Elem";
+import YandexMap from "../../components/YandexMap/YandexMap";
+
 import { BasketList } from "../../helpers/BasketList";
 
 import popupClose from "../../img/close_icon_dark.png";
 
 import { useState, useMemo, useEffect } from "react";
-import { Link } from "react-router-dom";
+import {ReactDOM} from "react-dom";
 
 import "./style.css";
 
@@ -40,18 +42,31 @@ const Basket = () => {
 
     function numOfProductsMinus(event, number, price) {
         if (number === 1) {
-            let result = window.confirm('Удалить товар из корзины?');
+            let result = window.confirm('Удалить этот товар из корзины?');
             if (result) {
-                setCount(count + 1);
+                setSum(sum - price);
+                return result;
             }
-        } 
-
-        setSum(sum - price);
+        }
 
         if (document.querySelectorAll('.basket__elem').length === 0) {
             document.querySelector('.basket__container').innerHTML = '<p class="basket__empty">Ваша корзина пуста</p>';
         }
     }
+
+    function changeDelivery(event) {
+        document.querySelector('.delivery-popup__change-button_active').classList.remove('delivery-popup__change-button_active');
+        event.target.classList.toggle('delivery-popup__change-button_active');
+
+        if (event.target.name === 'delivery') {
+            document.querySelector('.pickup').style.display = 'none';
+            document.querySelector('.del').style.display = 'flex';
+        } else {
+            document.querySelector('.pickup').style.display = 'flex';
+            document.querySelector('.del').style.display = 'none';
+        }
+    }
+
 
     return (
         <main className="main">
@@ -99,9 +114,30 @@ const Basket = () => {
             <div className="popup delivery-popup">
                 <button className="popup__close delivery-popup__close" onClick={(event) => closePopup(event.target.closest('.popup'))}><img src={popupClose} alt="" className="popup__close__img delivery-popup__close__img" /></button>
 
-                <form action="" className="popup__form delivery-popup__form">
+                <div className="delivery-popup__change">
+                    <button className="delivery-popup__change-button" 
+                    onClick={
+                        changeDelivery
+                    }
+                    name="pickup"
+                    >Самовывоз</button>
+                    <button className="delivery-popup__change-button delivery-popup__change-button_active" 
+                    onClick={
+                        changeDelivery
+                    }
+                    name="delivery"
+                    >Доставка</button>
+                </div>
+
+                <form action="" className="popup__form delivery-popup__form del">
                     <h1 className="popup__title delivery-popup__title">Выберите адрес доставки</h1>
                     <input type="text" placeholder="Введите адрес" className="delivery-popup__input" required/>
+                    <button className="popup__button delivery-popup__button" type="submit">Выбрать</button>
+                </form>
+
+                <form action="" className="popup__form delivery-popup__form pickup">
+                    <h1 className="popup__title delivery-popup__title">Выберите пункт выдачи</h1>
+                    <YandexMap />
                     <button className="popup__button delivery-popup__button" type="submit">Выбрать</button>
                 </form>
             </div>

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState} from "react";
 import { BooksList } from "../../helpers/BooksList";
 import { BasketList } from "../../helpers/BasketList";
@@ -13,20 +13,6 @@ const Product = (props) => {
     const item = BooksList[id];
     const [reviews, setReviews] = useState(item.reviews);
     const [counter, setCounter] = useState(0);
-
-    function openPopup(popup) {
-      popup.style.display = 'block';
-      setTimeout(function () {
-          popup.style.opacity = '1';
-      }, 10);
-  }
-
-  function closePopup(popup) {
-      popup.style.opacity = '0';
-      setTimeout(function () {
-          popup.style.display = 'none';
-      }, 100)
-  }
 
     function selectMark(event) {
       let starLabel = event.target;
@@ -133,7 +119,7 @@ const Product = (props) => {
               <h2 className="product-info__price">{item.price} руб.</h2>
 
               <div className="product-info__links">
-                <button className="product-info__link product-info__link_buy" onClick={() => openPopup(document.querySelector('.popup'))}>Купить сейчас</button>
+                <Link to={{pathname: `/buy/${item.id}` }} className="product-info__link product-info__link_buy">Купить сейчас</Link>
 
                 {
                   BasketList.find((el) => el.id === item.id) 
@@ -184,23 +170,6 @@ const Product = (props) => {
               }
             </ul>
           </section>
-
-          <div className="popup popup-pay">
-                <button className="popup__close popup-pay__close" onClick={(event) => closePopup(event.target.closest('.popup'))}><img src={popupClose} alt="" className="popup__close__img popup-pay__close__img" /></button>
-
-                <form className="popup__form popup-pay__form">
-                    <h1 className="popup__title popup-pay__title">Введите данные для оплаты</h1>
-
-                    <div className="popup-pay__inputs">
-                        <input className="popup-pay__input popup-pay__card-number__input" placeholder="Номер карты" required type="text" id="card-number" name="card-number" inputMode="numeric" autoComplete="cc-number" pattern="[0-9]+" />
-                        <input className="popup-pay__input popup-pay__date__input popup-pay__input-short" required type="text" id="expiry-date" name="expiry-date" autoComplete="cc-exp" placeholder="MM/YY" minLength="4" pattern="[0-9/]+" />
-                        <input className="popup-pay__input popup-pay__code__input popup-pay__input-short" placeholder="CVC2/CVV2"required type="text" id="security-code" name="security-code" inputMode="numeric" minLength="3" maxLength="4" pattern="[0-9]+" />
-                        <input type="text" placeholder="Введите адрес доставки" className="popup-pay__input popup-pay__adress__input" required/>
-                    </div>
-
-                    <button className="popup__button popup-pay__button">Оплатить {item.price}</button>
-                </form>
-          </div>
         </main>
       );
 }

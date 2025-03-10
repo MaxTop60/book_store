@@ -22,12 +22,14 @@ const Basket_Elem = (props) => {
 
                 <div className="basket__elem__num-of-products">
                     <button className="basket__elem__num-of-products__button" onClick={(event) => {
-                        props.numOfProductsMinus(event, number, price);
+                        let result =props.numOfProductsMinus(event, number, price);
                         if (number > 1) {
                             setNumber(number - 1);
                             BasketList.find((el) => el.id === props.id).number = number - 1;
                         } else {
-                            BasketList.pop(BasketList.find((el) => el.id === props.id));
+                            if (result) {
+                                BasketList.splice(BasketList.findIndex((el) => el.id === props.id), 1);
+                            }
                         }
                         }}>-</button>
                     <h2 className="basket__elem__num-of-products__number">{number}</h2>

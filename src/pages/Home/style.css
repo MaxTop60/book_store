@@ -201,6 +201,16 @@
     font-size: 13px;
 }
 
+.map__title {
+    margin: 100px auto 0;
+    font-weight: 900;
+    text-align: center;
+}
+
+.map__container {
+    width: 90%;
+}
+
 .contacts {
     margin: 100px auto 0;
     text-align: center;
