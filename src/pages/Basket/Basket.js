@@ -6,7 +6,7 @@ import { BasketList } from "../../helpers/BasketList";
 import popupClose from "../../img/close_icon_dark.png";
 
 import { useState, useMemo, useEffect } from "react";
-import {ReactDOM} from "react-dom";
+
 
 import "./style.css";
 

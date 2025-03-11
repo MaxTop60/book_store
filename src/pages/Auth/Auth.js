@@ -1,5 +1,7 @@
 import {Link} from "react-router-dom";
 
+import sqrollToHeader from "../../helpers/ScrollToHeader";
+
 import "./style.css";
 
 const Auth = () => {
@@ -14,7 +16,7 @@ const Auth = () => {
                 <button type="submit" className="auth-form__button">Войти</button>
 
                 <div className="auth-form__links">
-                    <Link to="/registration" className="auth-form__link">Регистрация</Link>
+                    <Link to="/registration" className="auth-form__link" onClick={sqrollToHeader}>Регистрация</Link>
                     <Link to="#" className="auth-form__link">Забыли пароль?</Link>
                 </div>
             </form>

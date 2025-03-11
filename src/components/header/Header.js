@@ -5,6 +5,8 @@ import { useState } from "react";
 
 import { BooksList } from "../../helpers/BooksList";
 
+import sqrollToHeader from "../../helpers/ScrollToHeader";
+
 import logo from "../../img/logo.svg";
 import search from "../../img/search_icon.svg";
 import basket from "../../img/basket_icon.svg";
@@ -42,7 +44,7 @@ const Header = () => {
 
     return (  
         <header className="header">
-            <Link className="header__home-link" to="/book_store">
+            <Link className="header__home-link" to="/book_store" onClick={sqrollToHeader}>
                 <img src={logo} alt="Логотип" className="header__logo"/>
                 <h1 className="header__title">BOOK STORE</h1>
             </Link>

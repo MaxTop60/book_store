@@ -2,7 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 
 import { BooksList } from "../../helpers/BooksList";
 
-import Book from '../../components/Book/Book'
+import Book from '../../components/Book/Book';
+import sqrollToHeader from "../../helpers/ScrollToHeader";
 
 import "./style.css";
 
@@ -30,7 +31,7 @@ const Category = () => {
                                 if (book.category.find(el => el === category)) {
                                     return (
                                         <li key={book.id} className="product-list__item">
-                                            <Link to={`/product/${book.id}`} className="new-products__item-link">
+                                            <Link to={`/product/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
                                                 <Book
                                                     key={book.id}
                                                     id={book.id}

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BasketList } from '../../helpers/BasketList';
 
+import sqrollToHeader from '../../helpers/ScrollToHeader';
+
 const Basket_Elem = (props) => {
     let price = props.price;
     let [number, setNumber] = useState(props.number);
@@ -13,7 +15,7 @@ const Basket_Elem = (props) => {
 
     return ( 
         <>
-                <Link className="basket__elem__link"to={`/product/${props.id}`}><img src={props.img} alt="Картинка книги" className="basket__elem__img" /></Link>
+                <Link className="basket__elem__link"to={`/product/${props.id}`} onClick={sqrollToHeader}><img src={props.img} alt="Картинка книги" className="basket__elem__img" /></Link>
 
                 <div className="basket__elem__info-block">
                     <h1 className="basket__elem__title">{props.title}</h1>

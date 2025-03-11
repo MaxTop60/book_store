@@ -11,6 +11,7 @@ import { BooksList } from "../../helpers/BooksList";
 
 import Book from "../../components/Book/Book";
 import YandexMap from "../../components/YandexMap/YandexMap";
+import sqrollToHeader from "../../helpers/ScrollToHeader";
 
 import { Link } from "react-router-dom";
 
@@ -54,7 +55,7 @@ const Home = () => {
                                 BooksList.map((book) => {
                                     return (
                                         <li className="new-products__item">
-                                            <Link to={`/product/${book.id}`} className="new-products__item-link">
+                                            <Link to={`/product/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
                                                 <Book key={book.id} id={book.id} img={book.img} title={book.title} author={book.author} price={book.price} />
                                             </Link>
                                         </li>
@@ -69,15 +70,15 @@ const Home = () => {
                 <section className="catalog" id="catalog">
                     <h1 className="catalog__title">Каталог</h1>
                     <div className="catalog__items">
-                        <Link className="catalog__item" to="/category/books?name=Книги">Книги</Link>
-                        <Link className="catalog__item" to='/category/el-books?name=Электронные книги'>Электронные книги</Link>
-                        <Link className="catalog__item" to='/category/audio-books?name=Аудиокнинги'>Аудиокниги</Link>
-                        <Link className="catalog__item" to='/category/toys?name=Игрушки, творчество'>Игрушки, творчество</Link>
-                        <Link className="catalog__item" to='/category/accessories?name=Книжные аксессуары'>Книжные аксессуары</Link>
-                        <Link className="catalog__item" to='/category/notebooks?name=Блокноты'>Блокноты</Link>
-                        <Link className="catalog__item" to='/category/table-games?name=Настольные игры'>Настольные игры</Link>
-                        <Link className="catalog__item" to='/category/presents?name=Подарки'>Подарки</Link>
-                        <Link className="catalog__item" to='/category/stocks?name=Акции'>Акции</Link>
+                        <Link className="catalog__item" to="/category/books?name=Книги" onClick={sqrollToHeader}>Книги</Link>
+                        <Link className="catalog__item" to='/category/el-books?name=Электронные книги' onClick={sqrollToHeader}>Электронные книги</Link>
+                        <Link className="catalog__item" to='/category/audio-books?name=Аудиокнинги' onClick={sqrollToHeader}>Аудиокниги</Link>
+                        <Link className="catalog__item" to='/category/toys?name=Игрушки, творчество' onClick={sqrollToHeader}>Игрушки, творчество</Link>
+                        <Link className="catalog__item" to='/category/accessories?name=Книжные аксессуары' onClick={sqrollToHeader}>Книжные аксессуары</Link>
+                        <Link className="catalog__item" to='/category/notebooks?name=Блокноты' onClick={sqrollToHeader}>Блокноты</Link>
+                        <Link className="catalog__item" to='/category/table-games?name=Настольные игры' onClick={sqrollToHeader}>Настольные игры</Link>
+                        <Link className="catalog__item" to='/category/presents?name=Подарки' onClick={sqrollToHeader}>Подарки</Link>
+                        <Link className="catalog__item" to='/category/stocks?name=Акции' onClick={sqrollToHeader}>Акции</Link>
                     </div>
                 </section>
 

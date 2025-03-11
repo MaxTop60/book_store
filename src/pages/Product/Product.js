@@ -4,7 +4,7 @@ import { BooksList } from "../../helpers/BooksList";
 import { BasketList } from "../../helpers/BasketList";
 import Review from "../../components/Review/Review";
 
-import popupClose from '../../img/close_icon_dark.png';
+import sqrollToHeader from "../../helpers/ScrollToHeader";
 
 import "./style.css";
 
@@ -119,7 +119,7 @@ const Product = (props) => {
               <h2 className="product-info__price">{item.price} руб.</h2>
 
               <div className="product-info__links">
-                <Link to={{pathname: `/buy/${item.id}` }} className="product-info__link product-info__link_buy">Купить сейчас</Link>
+                <Link to={{pathname: `/buy/${item.id}` }} className="product-info__link product-info__link_buy" onClick={sqrollToHeader}>Купить сейчас</Link>
 
                 {
                   BasketList.find((el) => el.id === item.id) 
