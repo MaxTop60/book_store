@@ -44,11 +44,10 @@ const Basket = () => {
         if (number === 1) {
             let result = window.confirm('Удалить этот товар из корзины?');
             if (result) {
+                setSum(sum - price);
                 return result;
             }
         }
-
-        setSum(sum - price);
 
         if (document.querySelectorAll('.basket__elem').length === 0) {
             document.querySelector('.basket__container').innerHTML = '<p class="basket__empty">Ваша корзина пуста</p>';
