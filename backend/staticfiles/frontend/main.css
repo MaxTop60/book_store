@@ -1,0 +1,1757 @@
+/*!**************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/styles/normalize.css ***!
+  \**************************************************************************************************************************************************/
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+
+/*!**********************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/styles/style.css ***!
+  \**********************************************************************************************************************************************/
+@font-face {
+    font-family: 'Montserrat';
+    src: url(fonts/Montserrat-Regular.0215145d364e809bc7cc.woff2) format('woff2');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(fonts/Montserrat-Bold.74353369e12619cf924f.woff2) format('woff2');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(fonts/Montserrat-ExtraBold.2513e770576523e58192.woff2) format('woff2');
+    font-weight: 900;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.content {
+    flex: 1;
+    /* Занимает всё доступное пространство */
+    padding: 20px;
+}
+
+
+.root {
+    font-family: 'Montserrat';
+    background-color: rgba(255, 250, 245, 1);
+}
+/*!*********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/components/header/style.css ***!
+  \*********************************************************************************************************************************************************/
+.header {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.header__home-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 195px;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.header__home-link:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.header__logo {
+    width: 42px;
+}
+
+.header__title {
+    color: rgba(77, 41, 0, 1);
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.header__link {
+    color: rgba(36, 20, 0, 1);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+    transition: 0.4s;
+}
+
+.header__link:not(:last-of-type) {
+    margin-right: 30px;
+}
+
+.header__link:hover {
+    opacity: 0.5;
+} 
+
+.header__search {
+    height: 28px;
+    z-index: 1;
+}
+
+.header__search__input-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px rgba(105, 103, 100, 0.59);
+}
+
+.header__search-input {
+    border: none;
+    width: 190px;
+    margin-left: 7px;
+    background: none;
+
+}
+
+.header__search-input:focus {
+    outline: none;
+}
+
+.header__search__container {
+    background-color: gray;
+    width: 230px;
+    background-color: white;
+    box-shadow: gray 0 0 10px;
+    padding: 10px 20px;
+    border-radius: 5px;  
+    list-style-type: none;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 500px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.header__search__link {
+    display: flex;
+    text-decoration: none;
+    color: black;
+    gap: 15px;
+}
+
+.header__search__item {
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: 0.4s;
+    width: 170px;
+}
+
+.header__search__item:hover {
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.199);
+}
+
+.header__search__item-img {
+    width: 50px;
+}
+
+.header__search__item-title {
+    font-size: 15px;
+}
+
+.header__search__item-author {
+    font-size: 12px;
+}
+
+.header__basket {
+    transition: 0.4s;
+}
+
+.header__basket:hover {
+    transform: scale(1.1);
+}
+
+.header__basket-image {
+    width: 30px;
+}
+
+.header__auth {
+    background-color: rgba(225, 106, 0, 1);
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.4s;
+}
+
+.header__auth:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.header__menu-button {
+    display: none;
+    background: none;
+    border: none;
+}
+
+.header__popup {
+    display: none;
+    z-index: 1;
+    transform: translateX(295px);
+    transition: 0.7s;
+}
+
+.header__popup__close {
+    background: none;
+    border: none;
+    align-self: flex-start;
+}
+
+.header__search__popup {
+    display: none;
+    margin-top: 20px;
+    width: 220px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.header__search-input__popup {
+    color: white;
+}
+
+.header__auth__popup {
+    margin-top: 10px;
+    display: none;
+}
+
+.header__search__container__popup {
+    position: absolute;
+    left: 10px;
+}
+
+.header__search__popup__none {
+    color: black;
+    text-align: center;
+}
+
+@media screen and (max-width: 1150px) {
+    .header {
+        width: 95%;
+    }
+
+    .header__navbar {
+        display: none;
+    }
+
+    .header__menu-button {
+        display: block;
+    }
+
+    .header__popup {
+        display: flex;
+        position:fixed;
+        width: 250px;
+        height: 100vh;
+        align-items: end;
+        flex-direction: column;
+        right: 0;
+        top: 0;
+        background-color: rgba(77, 41, 0, 1);
+        padding: 20px 20px;
+    }
+
+    .header__navbar__popup {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header__link__popup {
+        width: 100%;
+        font-size: 18px;
+        color: white;
+        margin-bottom: 10px;
+        text-align: end;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .header__search {
+        display: none;
+    }
+
+    .header__search__popup {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .header__auth {
+        display: none;
+    }
+
+    .header__auth__popup {
+        display: block;
+    }
+}
+/*!**************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/pages/Home/style.css ***!
+  \**************************************************************************************************************************************************/
+.preview {
+    width: 80%;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+    text-align: start;
+    flex-wrap: wrap;
+    gap: 150px;
+}
+
+.preview__info {
+    max-width: 367px;
+    text-align: center;
+}
+
+.preview__info-title {
+    font-weight: 900;
+    font-size: 36px;
+    margin-bottom: 0;
+}
+
+.preview__info-text {
+    font-size: 16px;
+    line-height: 29.5px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.preview__info-link {
+    padding: 18px 24px;
+    text-decoration: none;
+    background-color: rgba(214, 100, 0);
+    color: white;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+.preview__info-link:hover {
+    opacity: 0.8;
+}
+
+.new-products {
+    width: 90%;
+    margin: 200px auto 0;
+    text-align: center;
+}
+
+.new-products__title {
+    font-weight: 900;
+}
+
+.new-products__container {
+    display: flex;
+    margin-top: 70px;
+    justify-content: space-between;
+}
+
+.new-products__nav-button {
+    transition: 0.4s;
+}
+
+.new-products__nav-button:hover {
+    opacity: 0.5;
+}
+
+.new-products__nav-button_next {
+    transform: rotate(180deg);
+}
+
+.new-products__books {
+    display: flex;
+    list-style-type: none;
+    justify-content: start;
+    overflow-x: auto;
+    width: 85%;
+    height: 370px;
+    align-items: center;
+    scrollbar-width: none;
+}
+
+.new-products__books::-webkit-scrollbar {
+    display: none;
+}
+
+.new-products__item {
+    width: 135px;
+    box-shadow: grey 0 0 10px 1px;
+    padding: 20px 25px;
+    max-height: 312px;
+    margin-right: 62px;
+}
+
+.new-products__item-price {
+    text-align: start;
+    font-size: 18px;
+}
+
+.new-products__item-title {
+    text-align: start;
+    font-size: 12px;
+    margin-bottom: 0;
+    max-width: 148px;
+}
+
+.new-products__item-author {
+    text-align: start;
+    font-size: 12px;
+    margin-top: 2px;
+    margin-bottom: 0;
+    width: 136px;
+}
+
+.new-products__item-button {
+    border: none;
+    padding: 10px;
+    background-color: rgba(225, 106, 0, 1);
+    border-radius: 3px;
+    font-weight: 900;
+    font-size: 12px;
+    color: white;
+    margin-top: 20px;
+    transition: 0.4s;
+}
+
+.new-products__item-button:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.catalog {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.catalog__title {
+    font-weight: 900;
+}
+
+.catalog__items {
+    max-width: 798px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 36px;
+    margin: 50px auto 0;
+}
+
+.catalog__item {
+    width: 242px;
+    height: 76px;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: grey 0 0 10px 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: 0.4s;
+}
+
+.catalog__item:hover {
+    transform: scale(1.05);
+}
+
+.about {
+    text-align: center;
+    max-width: 1170px;
+    margin: auto;
+}
+
+.about__title {
+    font-weight: 900;
+}
+
+.about__items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.about__item {
+    display: flex;
+    align-items: center;
+    width: 270px;
+    justify-content: center;
+}
+
+.about__item-num {
+    font-size: 50px;
+    font-weight: 900;
+    margin-right: 17px;
+}
+
+.about__item-text {
+    font-size: 13px;
+}
+
+.map__title {
+    margin: 100px auto 0;
+    font-weight: 900;
+    text-align: center;
+}
+
+.map__container {
+    width: 90%;
+}
+
+.contacts {
+    margin: 100px auto 0;
+    text-align: center;
+}
+
+.contacts__title {
+    font-weight: 900;
+}
+
+.contacts__items {
+    margin-top: 31px;
+    max-width: 380px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contacts__item {
+    transition: 0.4s;
+}
+
+.contacts__item:hover {
+    transform: scale(1.1);
+}
+
+@media  screen and (max-width: 1510px) {
+    .preview__info {
+        max-width: 738px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .new-products__books {
+        width: 70%;
+    }
+
+    .about__item {
+        display: flex;
+        justify-content: start;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .contacts__item-img {
+        width: 50px;
+    }
+}
+
+/*!*******************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/components/Book/style.css ***!
+  \*******************************************************************************************************************************************************/
+.new-products__item {
+    width: 135px;
+    box-shadow: grey 0 0 10px 1px;
+    padding: 20px 25px;
+    max-height: 312px;
+    margin-right: 62px;
+    transition: 0.3s;
+}
+
+.new-products__item:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+}
+
+.new-products__item-link {
+    text-decoration: none;
+    color: black;
+}
+
+.new-products__item-price {
+    text-align: start;
+    font-size: 18px;
+}
+
+.new-products__item-title {
+    text-align: start;
+    font-size: 12px;
+    margin-bottom: 0;
+    width: 148px;
+}
+
+.new-products__item-author {
+    text-align: start;
+    font-size: 12px;
+    margin-top: 2px;
+    margin-bottom: 0;
+    width: 136px;
+}
+
+.new-products__item-button {
+    border: none;
+    padding: 10px;
+    background-color: rgba(225, 106, 0, 1);
+    border-radius: 3px;
+    font-weight: 900;
+    font-size: 12px;
+    color: white;
+    margin-top: 20px;
+    transition: 0.4s;
+}
+
+.new-products__item-button:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+/*!************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/components/YandexMap/style.css ***!
+  \************************************************************************************************************************************************************/
+.maps {
+    min-width: 200px;
+    max-width: 700px;
+
+    height: 500px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.maps__search {
+    position: absolute;
+    z-index: 1;
+    top : 10px;
+    left: 10px;
+    background-color: rgb(230, 230, 230);
+    border: none;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+/*!*********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/components/Review/style.css ***!
+  \*********************************************************************************************************************************************************/
+.reviews__item {
+    width: 80%;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: grey 0 0 10px 5px;
+    padding: 0 20px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 0;
+}
+
+.reviews__item__user-name {
+    font-size: 20px;
+}
+
+.reviews__item__mark {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+}
+
+.reviews__item__title {
+    font-size: 25px;
+}
+
+.reviews__item__mark-value {
+    font-size: 20px;
+}
+
+.reviews__item__text{
+    max-height: 270px;
+    overflow: auto;
+}
+/*!*****************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/pages/Product/style.css ***!
+  \*****************************************************************************************************************************************************/
+.main {
+    width: 90%;
+    margin: 100px auto 0;
+}
+
+.product-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 150px;
+}
+
+.product-info__img {
+    width: 30%;
+}
+
+.product-info__title {
+    font-weight: 900;
+}
+
+.product-info__author {
+    font-weight: normal;
+}
+
+.product-info__links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.product-info__link {
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    transition: 0.4s;
+}
+
+.product-info__link:hover {
+    transform: scale(1.05);
+}
+
+.product-info__link_buy {
+    background-color: rgba(225, 106, 0, 1);
+    color: white;
+}
+
+.product-info__link_to-basket {
+    background-color: rgba(0, 0, 0, 0.53);
+}
+
+.basket__elem__num-of-products {
+    display: none;
+}
+
+.reviews {
+    width: 90%;
+    margin: auto;
+}
+
+.reviews__form {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.reviews__form__rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    gap: 3px;
+    margin-top: 70px;
+}
+
+.reviews__form__star {
+    display: none;
+  }
+
+.reviews__form__star-label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(images/star.190d870d386afd29523a.png);
+    background-size: cover;
+    transition: 0.1s;
+}
+
+.reviews__form__star-label:hover,
+.reviews__form__star-label:hover ~ .reviews__form__star-label {
+  background-image: url(images/star_active.618d11e122cbca3f8e9e.png);
+}
+
+.reviews__form__star-label_active {
+    background-image: url(images/star_active.618d11e122cbca3f8e9e.png);
+}
+
+.reviews__form__put-review {
+    margin-top: 30px;
+    width: 80%;
+    border: none;
+    border-bottom: solid 1px black;
+    height: 40px;
+    background-color: rgba(255, 250, 245, 1);
+}
+
+.reviews__form__put-review:focus {
+    outline: none;
+}
+
+.reviews__form__submit {
+    width: 200px;
+    height: 40px;
+    margin-top: 30px;
+    background-color: rgba(225, 106, 0, 1);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.reviews__form__submit:hover {
+    transform: scale(1.05);
+}
+
+.reviews__title {
+    margin: 100px auto 0;
+    text-align: center;
+    font-weight: 900;
+}
+
+.reviews__container {
+    display: flex;
+    margin: auto;
+    margin-top: 70px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 80px;
+    list-style-type: none;
+    align-self: center;
+    padding: 0;
+}
+
+@media screen and (max-width: 915px) {
+    .product-info {
+        gap: 50px;
+    }
+
+    .product-info__img {
+        width: 50%;
+    }
+
+    .product-info__about {
+        text-align: center;
+    }
+
+    .reviews__form__put-review {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .product-info__links {
+        gap: 15px;
+    }
+
+    .product-info__link {
+        width: 150px;
+        height: 45px;
+        font-size: 14px;
+        margin: auto;
+    }
+}
+/*!**************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/components/Basket_ELem/style.css ***!
+  \**************************************************************************************************************************************************************/
+.basket__elem {
+    display: flex;
+    max-width: 90%;
+    justify-content: center;
+    margin: 50px auto 0;
+    flex-wrap: wrap;
+    gap: 100px;
+    align-items: center;
+    padding: 30px 20px;
+    box-shadow: rgba(198, 198, 198, 0.457) 0 0 10px 5px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.basket__elem__info-block {
+    width: 300px;
+}
+
+.basket__elem__author {
+    font-weight: normal;
+}
+
+.basket__elem__num-of-products {
+    display: flex;
+    min-width: 100px;
+    justify-content: center;
+    gap: 20px;
+    margin-left: 50px;
+    align-items: center;
+}
+
+.basket__elem__num-of-products__button {
+    font-size: 25px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: rgba(198, 198, 198, 0.457);
+    border-radius: 10px;
+    transition: 0.4s;
+}
+
+.basket__elem__num-of-products__button:hover {
+    cursor: pointer;
+    background-color: rgba(198, 198, 198, 0.957);
+}
+
+@media screen and (max-width: 1025px) {
+    .basket__elem {
+        justify-content: space-between;
+        padding: 30px 50px;
+    }
+
+    .basket__elem__num-of-products {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 607px) {
+    .basket__elem {
+        justify-content: center;
+    }
+
+    .basket__elem__title {
+        text-align: center;
+    }
+    .basket__elem__author {
+        text-align: center;
+    }
+}
+
+/*!****************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/pages/Basket/style.css ***!
+  \****************************************************************************************************************************************************/
+.basket {
+    width: 88%;
+    margin: auto;
+}
+
+.basket__title {
+    font-weight: 900;
+}
+
+.basket__container {
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+}
+
+.basket__empty {
+    margin: auto;
+    font-weight: 900;
+    font-size: 30px;
+    color: rgb(101, 101, 101);
+    background-color: #d7d7d781;
+    width: 80%;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.delivery {
+    width: 88%;
+    margin: 100px auto 0;
+}
+
+.delivery__title {
+    font-weight: 900;
+}
+
+.delivery__text {
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+.button {
+    margin-top: 20px;
+    padding: 20px 20px;
+    border: none;
+    background-color: rgba(225, 106, 0, 1);
+    color: white;
+    font-weight: 900;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+.pay {
+    width: 88%;
+    margin: 100px auto 0;
+}
+
+.pay__title {
+    font-weight: 900;
+}
+
+
+.popup {
+    box-shadow: grey 0 0 10px 5px;
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+    padding: 20px 50px;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+    display: none;
+    max-height: 80vh;
+    overflow: auto;
+}
+
+.maps {
+    width: 88%;
+}
+
+.popup__close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: white;
+}
+
+.popup__close__img {
+    width: 40px;
+    transition: 0.3s;
+}
+
+.popup__close:hover .popup__close__img {
+    transform: scale(1.1);
+}
+
+.popup__form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.pickup {
+    display: none;
+}
+
+.popup__title {
+    text-align: center;
+}
+
+.delivery-popup__input {
+    margin-top: 30px;
+    width: 90%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.delivery-popup__input:focus {
+    outline: none;
+}
+
+.delivery-popup__change {
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.delivery-popup__change-button {
+    height: 40px;
+    width: 150px;
+    background-color: rgba(128, 128, 128, 0.498);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delivery-popup__change-button:hover {
+    transform: scale(1.05);
+}
+
+.delivery-popup__change-button_active {
+    background-color: rgba(225, 106, 0, 1);
+    color: white;
+}
+
+.popup__button {
+    margin-top: 60px;
+    width: 150px;
+    height: 40px;
+    font-weight: 900;
+    background-color: rgba(225, 106, 0, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.popup__button:hover {
+    transform: scale(1.05);
+}
+
+.popup-pay__inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.popup-pay__card-number__input, .popup-pay__adress__input {
+    grid-column: 1 / 3;
+}
+
+.popup-pay__input {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.popup-pay__input:focus {
+    outline: none;
+}
+
+.popup-pay__input_short {
+    width: 50%;
+}
+
+.popup-pay__button {
+    width: 200px;
+}
+/*!******************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/pages/Category/style.css ***!
+  \******************************************************************************************************************************************************/
+.main__title {
+    margin: auto;
+    text-align: center;
+    font-weight: 900;
+    font-size: 40px;
+}
+
+.main__container {
+    background-color: rgba(101, 101, 101, 0.151);
+    border-radius: 15px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+    margin-top: 50px;
+}
+
+.product-list {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    justify-items: center;
+    list-style-type: none;
+    gap: 30px;
+    width: 90%;
+    min-height: 400px;
+}
+
+.product-list__none {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 1/-1;
+    font-size: 30px;
+    color: gray;
+    font-weight: 900;
+}
+
+.product-list__item {
+    width: 135px;
+    box-shadow: grey 0 0 10px 1px;
+    padding: 20px 25px;
+    max-height: 312px;
+    transition: 0.4s;
+}
+
+.product-list__item:hover {
+    transform: scale(1.03);
+}
+
+.new-products__item-price {
+    text-align: start;
+    font-size: 18px;
+}
+
+.new-products__item-title {
+    text-align: start;
+    font-size: 12px;
+    margin-bottom: 0;
+    max-width: 148px;
+}
+
+.new-products__item-author {
+    text-align: start;
+    font-size: 12px;
+    margin-top: 2px;
+    margin-bottom: 0;
+    width: 136px;
+}
+
+.new-products__item-button {
+    border: none;
+    padding: 10px;
+    background-color: rgba(225, 106, 0, 1);
+    border-radius: 3px;
+    font-weight: 900;
+    font-size: 12px;
+    color: white;
+    margin-top: 20px;
+    transition: 0.4s;
+    text-align: center;
+}
+
+.new-products__item-button:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+/*!**************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/pages/Auth/style.css ***!
+  \**************************************************************************************************************************************************/
+.main {
+    min-height: 400px;
+}
+
+.auth-form {
+    max-width: 500px;
+    background-color: rgba(128, 128, 128, 0.29);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    margin: auto;   
+    gap: 20px;
+    padding: 50px 30px;
+}
+
+.auth-form__title {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.auth-form__input {
+    width: 250px;
+    height: 30px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.auth-form__input:focus {
+    border-bottom: 2px solid rgb(225, 184, 0);
+}
+
+.auth-form__input:invalid {
+    border-bottom: 1px solid red;
+}
+
+.auth-form__button {
+    width: 150px;
+    height: 40px;
+    margin-top: 20px;
+    background-color: rgb(225, 135, 0);
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 7px;
+    transition: 0.4s;
+}
+
+.auth-form__button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.auth-form__links {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    column-gap: 30px;
+    row-gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.auth-form__link {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid black;
+    transition: 0.2s;
+}
+
+.auth-form__link:hover {
+    cursor: pointer;
+    color: rgb(225, 135, 0);
+    border-bottom: 1px solid rgb(225, 135, 0);
+}
+/*!**********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/pages/Registration/style.css ***!
+  \**********************************************************************************************************************************************************/
+.reg-form__button {
+    width: 250px;
+}
+/*!*************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/pages/Buy/style.css ***!
+  \*************************************************************************************************************************************************/
+.buy {
+    margin: auto;
+    margin-top: 100px;
+    box-shadow: grey 0 0 10px;
+    padding: 50px 20px;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.buy__title {
+    margin: auto;
+    text-align: center;
+}
+
+.delivery-popup__input {
+    background-color: transparent;
+    max-width: 500px;
+}
+
+
+.popup-pay__input {
+    background-color: transparent;
+}
+
+.buy__form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px auto 0;
+}   
+
+.buy__form__title {
+    text-align: center;
+}
+
+/*!*********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/components/Footer/style.css ***!
+  \*********************************************************************************************************************************************************/
+.footer {
+    height: 176px;
+    background-color: rgba(57, 31, 0, 1);
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.footer__logo {
+    width: 60px;
+}
+
+.footer__title {
+    color: white;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+
