@@ -7,6 +7,8 @@ import vk_icon from "../../img/vk_icon.svg";
 import inst_icon from "../../img/inst_icon.svg";
 import youtube_icon from "../../img/youtube_icon.svg";
 
+import axios from 'axios';
+
 import "./style.css";
 
 import { BooksList } from "../../helpers/BooksList";
@@ -18,15 +20,31 @@ import sqrollToHeader from "../../helpers/ScrollToHeader";
 import { Link } from "react-router-dom";
 
 
-const Home = () => {
-    const scrollLeft = () => {
+class Home extends React.Component {
+    state = { details: [], };
+
+    componentDidMount(){
+        let data;
+        axios.get('http://localhost:8000')
+        .then(res => {
+        data = res.data;
+        this.setState({
+            details: data
+        });
+        })
+        .catch(err => {
+        console.log(err);
+        })
+    }
+
+    scrollLeft(){
         document.querySelector('.new-products__books').scrollBy({
           left: -500,
           behavior: 'smooth'
         });
     }
     
-    const scrollRight = () => {
+    scrollRight(){
         document.querySelector('.new-products__books').scrollBy({
           left: 500,
           behavior: 'smooth'
@@ -34,7 +52,8 @@ const Home = () => {
     }
     
 
-    return ( 
+    render() {
+        return ( 
             <main className="main">
                 <section className="preview">
                     <div className="preview__info">
@@ -51,10 +70,10 @@ const Home = () => {
                 <section className="new-products">
                     <h1 className="new-products__title">Горячие поступления</h1>
                     <div className="new-products__container">
-                        <img src={navArrow} alt="Назад" onClick={scrollLeft} className="new-products__nav-button new-products__nav-button_back" />
+                        <img src={navArrow} alt="Назад" onClick={this.scrollLeft} className="new-products__nav-button new-products__nav-button_back" />
                         <ul className="new-products__books">
                             {
-                                BooksList.map((book) => {
+                                this.state.details.map((book) => {
                                     return (
                                         <li className="new-products__item" key={book.id}>
                                             <Link to={`/product/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
@@ -65,7 +84,7 @@ const Home = () => {
                                 })
                             }
                         </ul>
-                        <img src={navArrow} alt="Вперёд" onClick={scrollRight} className="new-products__nav-button new-products__nav-button_next"  />
+                        <img src={navArrow} alt="Вперёд" onClick={this.scrollRight} className="new-products__nav-button new-products__nav-button_next"  />
                     </div>
                 </section>
 
@@ -125,7 +144,8 @@ const Home = () => {
                     </div>
                 </section>
             </main>
-     );
+        );
+    } 
 }
  
 export default Home;
