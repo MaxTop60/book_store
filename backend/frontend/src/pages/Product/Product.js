@@ -2,17 +2,24 @@ import React from "react";
 
 import { Link, useParams } from "react-router-dom";
 import { useState} from "react";
-import { BooksList } from "../../helpers/BooksList";
 import { BasketList } from "../../helpers/BasketList";
+import Api from "../../API/API";
 import Review from "../../components/Review/Review";
 
 import sqrollToHeader from "../../helpers/ScrollToHeader";
 
 import "./style.css";
 
-const Product = (props) => {
+const Product = () => {
+
+
+  let BooksList = Api();
+
+  
+  
     const { id } = useParams();
-    const item = BooksList[id];
+    const item = BooksList[id - 1];
+    console.log(BooksList);
     const [reviews, setReviews] = useState(item.reviews);
     const [counter, setCounter] = useState(0);
 

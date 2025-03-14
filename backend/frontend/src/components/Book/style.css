@@ -17,6 +17,11 @@
     color: black;
 }
 
+.new-products__item-image {
+    width: 100%;
+    height: 100%;
+}
+
 .new-products__item-price {
     text-align: start;
     font-size: 18px;

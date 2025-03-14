@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from "react";
+import { useEffect, useState } from "react";
 
 import Header from "./components/header/Header";
 import Home from "./pages/Home/Home.js";
@@ -18,9 +19,8 @@ import Registration from "./pages/Registration/Registration.js";
 import Buy from "./pages/Buy/Buy.js";
 import Footer from "./components/Footer/Footer.js";
 
-class App extends React.Component {
-  render() {
-    
+
+const App = () => {
     return (
       <div className="App" onClick={(event) => {
         if (!event.target.classList.contains('header__search__container')) {
@@ -49,7 +49,6 @@ class App extends React.Component {
         </Router>
       </div>
     );
-  }
 }
 
 

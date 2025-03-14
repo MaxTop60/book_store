@@ -13,10 +13,19 @@ class BookView(APIView):
                 "title": output.title,
                 "author": output.author,
                 "price": output.price,
-                "img": output.img,
+                "img": f'http://127.0.0.1:8000{output.img.url}',
+                "reviews": [
+                    {
+                        "userID": output.userId,
+                        "userName": output.userName,
+                        "mark": output.mark,
+                        "value": output.value,
+                    } for output in output.reviews.all()
+                ]
             } for output in Book.objects.all()
         ]
         return Response(output)
+    
     def post(self, request):
         serializer = BookSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):

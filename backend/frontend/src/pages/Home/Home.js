@@ -11,48 +11,38 @@ import axios from 'axios';
 
 import "./style.css";
 
-import { BooksList } from "../../helpers/BooksList";
+import Api from "../../API/API";
 
 import Book from "../../components/Book/Book";
 import YandexMap from "../../components/YandexMap/YandexMap";
 import sqrollToHeader from "../../helpers/ScrollToHeader";
 
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 
-class Home extends React.Component {
-    state = { details: [], };
 
-    componentDidMount(){
-        let data;
-        axios.get('http://localhost:8000')
-        .then(res => {
-        data = res.data;
-        this.setState({
-            details: data
-        });
-        })
-        .catch(err => {
-        console.log(err);
-        })
-    }
 
-    scrollLeft(){
-        document.querySelector('.new-products__books').scrollBy({
-          left: -500,
-          behavior: 'smooth'
-        });
-    }
+const Home = () => {
     
-    scrollRight(){
+    let BooksList = Api();
+
+    
+    const scrollRight = () => {
         document.querySelector('.new-products__books').scrollBy({
           left: 500,
           behavior: 'smooth'
         });
     }
-    
 
-    render() {
+    const scrollLeft = () => {
+        document.querySelector('.new-products__books').scrollBy({
+          left: -500,
+          behavior: 'smooth'
+        });
+    }
+
+
         return ( 
             <main className="main">
                 <section className="preview">
@@ -70,10 +60,10 @@ class Home extends React.Component {
                 <section className="new-products">
                     <h1 className="new-products__title">Горячие поступления</h1>
                     <div className="new-products__container">
-                        <img src={navArrow} alt="Назад" onClick={this.scrollLeft} className="new-products__nav-button new-products__nav-button_back" />
+                        <img src={navArrow} alt="Назад" onClick={scrollLeft} className="new-products__nav-button new-products__nav-button_back" />
                         <ul className="new-products__books">
                             {
-                                this.state.details.map((book) => {
+                                BooksList.map((book) => {
                                     return (
                                         <li className="new-products__item" key={book.id}>
                                             <Link to={`/product/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
@@ -84,7 +74,7 @@ class Home extends React.Component {
                                 })
                             }
                         </ul>
-                        <img src={navArrow} alt="Вперёд" onClick={this.scrollRight} className="new-products__nav-button new-products__nav-button_next"  />
+                        <img src={navArrow} alt="Вперёд" onClick={scrollRight} className="new-products__nav-button new-products__nav-button_next"  />
                     </div>
                 </section>
 
@@ -146,6 +136,5 @@ class Home extends React.Component {
             </main>
         );
     } 
-}
  
 export default Home;
