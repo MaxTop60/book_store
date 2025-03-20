@@ -1,33 +1,44 @@
-import React, { useEffect, useState } from "react";
-
 import axios from 'axios';
 
-const Api = () => {
-    const [details, setDetails] = useState([]);
-    const [loading, setLoading] = useState(true);
+export const ApiGetBooks = async () => {
+    let details;
 
-    useEffect(() => {
-        const fetchData = async () => {
-            await axios
-                .get("http://127.0.0.1:8000/")
-                .then(res => {
-                    setDetails(res.data);
-                    setLoading(false);
-                })
-                .catch(err => {
-                    console.log(err);
-                    setLoading(false);
-                })
+    const fetchData = async () => {
+        try {
+          const res = await axios.get("http://127.0.0.1:8000/");
+          return res.data;
+        } catch (err) {
+          console.log(err);
         }
+    }
+    
+    details = await fetchData();
 
-        fetchData();
-        console.log(`details: ${details}`);
-
-        console.log(`BooksList complete`);
-    }, [])
+    
 
     return details;
 }
 
+export const ApiPostReview = (data) => {
+  axios.post('http://127.0.0.1:8000/product/:id', data);
+}
 
-export default Api;
+export const ApiGetReviews = async (id) => {
+  let details;
+
+  const fetchData = async () => {
+      try {
+        const res = await axios.get("http://127.0.0.1:8000/product/:id");
+        return res.data;
+      } catch (err) {
+        console.log(err);
+      }
+  }
+  
+  details = await fetchData();
+
+  return details;
+  
+}
+
+

@@ -1,4 +1,5 @@
 .reviews__item {
+    position: relative;
     width: 80%;
     background-color: white;
     border-radius: 15px;
@@ -33,4 +34,17 @@
 .reviews__item__text{
     max-height: 270px;
     overflow: auto;
+}
+
+.reviews__item__delete {
+    width: 30px;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.reviews__item__delete:hover {
+    transform: scale(1.1);
 }

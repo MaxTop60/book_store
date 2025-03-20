@@ -20,7 +20,7 @@
     "url-loader": "^4.1.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "http://MaxTop60.github.io/book_store",
+  "homepage": "http://MaxTop60.github.io/",
   "scripts": {
     "start": "react-scripts start",
     "build": "webpack --mode production ./src/index.js --output-path ./static/frontend/main.js",

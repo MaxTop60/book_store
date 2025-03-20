@@ -120,6 +120,8 @@
 
 .header__basket {
     transition: 0.4s;
+    background-color: transparent;
+    border: none;
 }
 
 .header__basket:hover {

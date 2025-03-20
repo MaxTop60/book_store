@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import { Link, useLocation } from "react-router-dom";
 
-import { BooksList } from "../../helpers/BooksList";
+import { ApiGetBooks } from "../../API/API";
 
 import Book from '../../components/Book/Book';
 import sqrollToHeader from "../../helpers/ScrollToHeader";
@@ -19,6 +19,21 @@ const Category = () => {
     category = category.split('?')[0];
 
     console.log(category);
+
+    const [BooksList, setBooksList] = useState([]);
+
+    useEffect(() => {
+            const fetchData = async () => {
+              try {
+                const data = await ApiGetBooks();
+                setBooksList(data);
+              } catch (err) {
+                console.log(err);
+              }
+            }
+        
+            fetchData();
+    }, [])
 
     return ( 
         <main className="main">

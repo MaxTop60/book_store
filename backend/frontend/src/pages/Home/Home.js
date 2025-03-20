@@ -11,7 +11,7 @@ import axios from 'axios';
 
 import "./style.css";
 
-import Api from "../../API/API";
+import {ApiGetBooks, ApiRegisterUser} from "../../API/API";
 
 import Book from "../../components/Book/Book";
 import YandexMap from "../../components/YandexMap/YandexMap";
@@ -24,9 +24,20 @@ import { useState, useEffect } from "react";
 
 
 const Home = () => {
-    
-    let BooksList = Api();
+    const [BooksList, setBooksList] = useState([]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const data = await ApiGetBooks();
+            setBooksList(data);
+          } catch (err) {
+            console.log(err);
+          }
+        }
+    
+        fetchData();
+    }, [])
     
     const scrollRight = () => {
         document.querySelector('.new-products__books').scrollBy({

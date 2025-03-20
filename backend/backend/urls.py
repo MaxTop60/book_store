@@ -14,16 +14,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.urls import re_path as url
 from backend_api.views import *
+from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', BookView.as_view()),
+    path("admin/", admin.site.urls),
+    path("token/", jwt_views.TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("token/refresh/", jwt_views.TokenRefreshView.as_view(), name="token_refresh"),
+    path("home/", HomeView.as_view(), name="home"),
+    path("logout/", LogoutView.as_view(), name="logout"),
+    path("register/", RegisterView.as_view(), name="register"),
+    path("", BookView.as_view()),
+    path("product/:id", BookReviewView.as_view()),
+    path("basket/", BasketView.as_view(), name="basket"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

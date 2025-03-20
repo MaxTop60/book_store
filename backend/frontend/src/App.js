@@ -16,8 +16,11 @@ import Basket from "./pages/Basket/Basket.js";
 import Category from "./pages/Category/Category.js";
 import Auth from "./pages/Auth/Auth.js";
 import Registration from "./pages/Registration/Registration.js";
+import Logout from "./components/Logout/Logout.js";
 import Buy from "./pages/Buy/Buy.js";
 import Footer from "./components/Footer/Footer.js";
+
+import { ApiRegisterUser } from "./API/API.js";
 
 
 const App = () => {
@@ -41,6 +44,7 @@ const App = () => {
               <Route path="/category/:category" element={<Category />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/registration" element={<Registration />} />
+              <Route path="/logout" element={<Logout />} />
               <Route path="/buy/:id" element={<Buy />} />
             </Routes>
           </main>

@@ -3,7 +3,7 @@ import "./style.css"
 import React from "react";
 
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { BooksList } from "../../helpers/BooksList";
 
@@ -20,6 +20,16 @@ import search_light from "../../img/search_icon_light.svg";
 const Header = () => {
     const location = useLocation();
 
+    const [isAuth, setIsAuth] = useState(false);
+
+    useEffect(() => {
+        if (localStorage.getItem('access_token') !== null) {
+            setIsAuth(true);
+        }
+
+        console.log(isAuth);
+    }, [isAuth])
+
     function openMenu() {
         document.querySelector(".header__popup").style.transform = "translateX(0)";
     }
@@ -29,7 +39,7 @@ const Header = () => {
     }
 
     function scrollToSection(section) {
-        if (location.pathname !== '/book_store/') {
+        if (location.pathname !== '/') {
             setTimeout(() => {
                 document.querySelector(`.${section}`).scrollIntoView({behavior: 'smooth'});
             }, 100);
@@ -52,9 +62,9 @@ const Header = () => {
             </Link>
 
             <nav className="header__navbar">
-                <NavLink to="/book_store" onClick={() => {scrollToSection("catalog");}} className="header__link">Каталог</NavLink>
-                <NavLink to="/book_store" onClick={() => {scrollToSection("about");}} className="header__link">О магазине</NavLink>
-                <NavLink to="/book_store" onClick={() => {scrollToSection("contacts")}} className="header__link">Блог</NavLink>
+                <NavLink to="/" onClick={() => {scrollToSection("catalog");}} className="header__link">Каталог</NavLink>
+                <NavLink to="/" onClick={() => {scrollToSection("about");}} className="header__link">О магазине</NavLink>
+                <NavLink to="/" onClick={() => {scrollToSection("contacts")}} className="header__link">Блог</NavLink>
             </nav>
 
             <div className="header__search">
@@ -95,9 +105,19 @@ const Header = () => {
 
 
 
-            <Link to="/basket" className="header__basket"><img src={basket} alt="Корзина" className="header__basket-image"/></Link>
+            <button className="header__basket" onClick={() => {
+                if (isAuth === false) {
+                    alert("Вы должны авторизироваться.");
+                    window.location.href = '/auth';
+                }
+            }}><Link to="/basket"><img src={basket} alt="Корзина" className="header__basket-image"/></Link></button>
 
-            <Link to="/auth" className="header__auth">Войти</Link>
+            {
+                isAuth
+                    ? <Link to="/logout" className="header__auth">Выйти</Link>
+                    :<Link to="/auth" className="header__auth">Войти</Link>
+            }
+
 
             <button className="header__menu-button" onClick={openMenu}><img src={menu_button} alt="Открыть меню" className="header__menu-button-img" /></button>
 
@@ -141,12 +161,16 @@ const Header = () => {
                 </div>
 
                 <nav className="header__navbar header__navbar__popup">
-                <NavLink to="/book_store" onClick={() => {scrollToSection("catalog");}} className="header__link header__link__popup">Каталог</NavLink>
-                <NavLink to="/book_store" onClick={() => {scrollToSection("about");}} className="header__link header__link__popup">О магазине</NavLink>
-                <NavLink to="/book_store" onClick={() => {scrollToSection("contacts")}} className="header__link header__link__popup">Блог</NavLink>
+                <NavLink to="/" onClick={() => {scrollToSection("catalog");}} className="header__link header__link__popup">Каталог</NavLink>
+                <NavLink to="/" onClick={() => {scrollToSection("about");}} className="header__link header__link__popup">О магазине</NavLink>
+                <NavLink to="/" onClick={() => {scrollToSection("contacts")}} className="header__link header__link__popup">Блог</NavLink>
                 </nav>
 
-                <Link to="/auth" className="header__auth header__auth__popup">Войти</Link>
+                {
+                    isAuth
+                        ?<Link to="/logout" className="header__auth header__auth__popup">Выйти</Link>
+                        :<Link to="/auth" className="header__auth header__auth__popup">Войти</Link>
+                }
             </div>
         </header>
     );

@@ -45,6 +45,10 @@
     background-color: rgba(198, 198, 198, 0.957);
 }
 
+.basket__elem__img {
+    width: 100px;
+}
+
 @media screen and (max-width: 1025px) {
     .basket__elem {
         justify-content: space-between;

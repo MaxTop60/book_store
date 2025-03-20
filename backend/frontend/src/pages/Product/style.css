@@ -151,6 +151,19 @@
     padding: 0;
 }
 
+.reviews__none {
+    background-color: rgba(167, 167, 167, 0.493);
+    width: 80%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 900;
+    color:  gray;
+    border-radius: 15px;
+}
+
 @media screen and (max-width: 915px) {
     .product-info {
         gap: 50px;

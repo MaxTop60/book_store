@@ -3,164 +3,320 @@ import React from "react";
 import Basket_Elem from "../../components/Basket_ELem/Basket_Elem";
 import YandexMap from "../../components/YandexMap/YandexMap";
 
-import { BasketList } from "../../helpers/BasketList";
-
 import popupClose from "../../img/close_icon_dark.png";
 
 import { useState, useMemo, useEffect } from "react";
-
+import axios from "axios";
 
 import "./style.css";
 
 const Basket = () => {
-    let [sum, setSum] = useState(0);
-    let [count, setCount] = useState(0);
+  let [sum, setSum] = useState(0);
+  let [count, setCount] = useState(0);
+  const [BasketList, setBasketList] = useState([]);
+  const [user, setUser] = useState({basketList: []});
 
-    const newSum = useMemo(() => {
-        return BasketList.reduce((acc, elem) => acc + elem.price * elem.number, 0);
-    }, [BasketList]);
-    
-    useEffect(() => {
-        setSum(newSum);
-    }, [newSum]);
+  const [isAuth, setIsAuth] = useState(false);
+  const [data, setData] = useState(null);
 
-    function openPopup(popup) {
-        popup.style.display = 'block';
-        setTimeout(function () {
-            popup.style.opacity = '1';
-        }, 10);
+  useEffect(() => {
+    if (localStorage.getItem("access_token") !== null) {
+      setIsAuth(true);
     }
 
-    function closePopup(popup) {
-        popup.style.opacity = '0';
-        setTimeout(function () {
-            popup.style.display = 'none';
-        }, 100)
-    }
+    console.log(isAuth);
+  }, [isAuth]);
 
-    function numOfProductsPlus(event, price) {
-        setSum(sum + price)
-    }
+  useEffect(() => {
+    (async () => {
+      const token = localStorage.getItem("access_token");
+      if (token) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        try {
+          const response = await axios.get("http://127.0.0.1:8000/home/");
+          setData(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        console.error("Токен авторизации не найден");
+      }
+    })();
+  }, [isAuth]);
 
-    function numOfProductsMinus(event, number, price) {
-        if (number === 1) {
-            let result = window.confirm('Удалить этот товар из корзины?');
-            if (result) {
-                setSum(sum - price);
-                return result;
+  useEffect(() => {
+    if (data) {
+        setUser(data);
+        console.log(user);
+
+        (async () => {
+            const token = localStorage.getItem("access_token");
+            if (token) {
+              axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+              console.log(user);
+              try {
+                const response = await axios.get(`http://127.0.0.1:8000/basket/?userId=${user.id}`);
+                setBasketList(response.data);
+              } catch (error) {
+                console.error(error);
+              }
+            } else {
+              console.error("Токен авторизации не найден");
             }
-        }
-
-        if (document.querySelectorAll('.basket__elem').length === 0) {
-            document.querySelector('.basket__container').innerHTML = '<p class="basket__empty">Ваша корзина пуста</p>';
-        }
+          })();
     }
+  }, [data]);
 
-    function changeDelivery(event) {
-        document.querySelector('.delivery-popup__change-button_active').classList.remove('delivery-popup__change-button_active');
-        event.target.classList.toggle('delivery-popup__change-button_active');
 
-        if (event.target.name === 'delivery') {
-            document.querySelector('.pickup').style.display = 'none';
-            document.querySelector('.del').style.display = 'flex';
-        } else {
-            document.querySelector('.pickup').style.display = 'flex';
-            document.querySelector('.del').style.display = 'none';
-        }
+  const newSum = useMemo(() => {
+    return BasketList.reduce((acc, elem) => acc + elem.price * elem.quantity, 0);
+  }, [BasketList]);
+
+  useEffect(() => {
+    setSum(newSum);
+  }, [newSum]);
+
+  function openPopup(popup) {
+    popup.style.display = "block";
+    setTimeout(function () {
+      popup.style.opacity = "1";
+    }, 10);
+  }
+
+  function closePopup(popup) {
+    popup.style.opacity = "0";
+    setTimeout(function () {
+      popup.style.display = "none";
+    }, 100);
+  }
+
+  function numOfProductsPlus(event, price) {
+    setSum(sum + price);
+
+    (async () => {
+        console.log(BasketList);
+        const response = await axios.post(`http://127.0.0.1:8000/basket/`, {bookId: BasketList.find((elem) => elem.id === parseInt(event.target.name)).id, userId: user.id});
+      })()
+  }
+
+  function numOfProductsMinus(event, number, price) {
+    if (number === 1) {
+      let result = window.confirm("Удалить этот товар из корзины?");
+      if (result) {
+        setSum(sum - price);
+        (async () => {
+            const response = await axios.delete(`http://127.0.0.1:8000/basket/`, {data:{bookId: BasketList.find((elem) => elem.id === parseInt(event.target.name)).id, userId: user.id}});
+      
+          })()
+
+          document.querySelector(".basket__container").innerHTML =
+          '<p class="basket__empty">Ваша корзина пуста</p>';
+        return result;
+      }
+    } else {
+        (async () => {
+            const response = await axios.delete(`http://127.0.0.1:8000/basket/`, {data:{bookId: BasketList.find((elem) => elem.id === parseInt(event.target.name)).id, userId: user.id}});
+      
+          })()
+        
+        setSum(sum - price)
     }
+  }
 
+  function changeDelivery(event) {
+    document
+      .querySelector(".delivery-popup__change-button_active")
+      .classList.remove("delivery-popup__change-button_active");
+    event.target.classList.toggle("delivery-popup__change-button_active");
 
-    return (
-        <main className="main">
-            <section className="basket">
-                <h1 className="basket__title">Корзина</h1>
+    if (event.target.name === "delivery") {
+      document.querySelector(".pickup").style.display = "none";
+      document.querySelector(".del").style.display = "flex";
+    } else {
+      document.querySelector(".pickup").style.display = "flex";
+      document.querySelector(".del").style.display = "none";
+    }
+  }
 
-                <ul className="basket__container">
-                {
-                    BasketList.length === 0
-                        ? <p className="basket__empty">Ваша корзина пуста</p>
-                        : BasketList.map(elem => {
-                            return (
-                                <li className="basket__elem">
-                                        <Basket_Elem 
-                                            key={elem.id}
-                                            id={elem.id}
-                                            number={elem.number} 
-                                            img={elem.img} 
-                                            title={elem.title} 
-                                            author={elem.author} 
-                                            price={elem.price} 
-                                            numOfProductsPlus={numOfProductsPlus}
-                                            numOfProductsMinus={numOfProductsMinus}/>
-                                </li>)
-                        })
-                }
-                </ul>
-            </section>
+  return (
+    <main className="main">
+      <section className="basket">
+        <h1 className="basket__title">Корзина</h1>
 
-            <section className="delivery">
-                <h1 className="delivery__title">Доставка</h1>
+        <ul className="basket__container">
+          {BasketList.length === 0 ? (
+            <p className="basket__empty">Ваша корзина пуста</p>
+          ) : (
+            BasketList.map((elem) => {
+              return (
+                <li className="basket__elem">
+                  <Basket_Elem
+                    key={elem.id}
+                    id={elem.id}
+                    number={elem.quantity}
+                    img={elem.img}
+                    title={elem.title}
+                    author={elem.author}
+                    price={elem.price}
+                    numOfProductsPlus={numOfProductsPlus}
+                    numOfProductsMinus={numOfProductsMinus}
+                  />
+                </li>
+              );
+            })
+          )}
+        </ul>
+      </section>
 
-                <p className="delivery__text">Все товары в корзине будут доставлены в течение 3 дней после оплаты</p>
+      <section className="delivery">
+        <h1 className="delivery__title">Доставка</h1>
 
-                <button className="button delivery__button" onClick={() => openPopup(document.querySelector('.delivery-popup'))}>Выберите адрес доставки</button>
-            </section>
+        <p className="delivery__text">
+          Все товары в корзине будут доставлены в течение 3 дней после оплаты
+        </p>
 
-            <section className="pay">
-                <h1 className="pay__title">Итого</h1>
-                <h2 className="pay__sum">Сумма заказа: {sum} руб.</h2>
+        <button
+          className="button delivery__button"
+          onClick={() => openPopup(document.querySelector(".delivery-popup"))}
+        >
+          Выберите адрес доставки
+        </button>
+      </section>
 
-                <button className=" button pay__button" onClick={() => openPopup(document.querySelector('.popup-pay'))}>Заказать</button>
-            </section>
+      <section className="pay">
+        <h1 className="pay__title">Итого</h1>
+        <h2 className="pay__sum">Сумма заказа: {sum} руб.</h2>
 
-            <div className="popup delivery-popup">
-                <button className="popup__close delivery-popup__close" onClick={(event) => closePopup(event.target.closest('.popup'))}><img src={popupClose} alt="" className="popup__close__img delivery-popup__close__img" /></button>
+        <button
+          className=" button pay__button"
+          onClick={() => openPopup(document.querySelector(".popup-pay"))}
+        >
+          Заказать
+        </button>
+      </section>
 
-                <div className="delivery-popup__change">
-                    <button className="delivery-popup__change-button" 
-                    onClick={
-                        changeDelivery
-                    }
-                    name="pickup"
-                    >Самовывоз</button>
-                    <button className="delivery-popup__change-button delivery-popup__change-button_active" 
-                    onClick={
-                        changeDelivery
-                    }
-                    name="delivery"
-                    >Доставка</button>
-                </div>
+      <div className="popup delivery-popup">
+        <button
+          className="popup__close delivery-popup__close"
+          onClick={(event) => closePopup(event.target.closest(".popup"))}
+        >
+          <img
+            src={popupClose}
+            alt=""
+            className="popup__close__img delivery-popup__close__img"
+          />
+        </button>
 
-                <form action="" className="popup__form delivery-popup__form del">
-                    <h1 className="popup__title delivery-popup__title">Выберите адрес доставки</h1>
-                    <input type="text" placeholder="Введите адрес" className="delivery-popup__input" required/>
-                    <button className="popup__button delivery-popup__button" type="submit">Выбрать</button>
-                </form>
+        <div className="delivery-popup__change">
+          <button
+            className="delivery-popup__change-button"
+            onClick={changeDelivery}
+            name="pickup"
+          >
+            Самовывоз
+          </button>
+          <button
+            className="delivery-popup__change-button delivery-popup__change-button_active"
+            onClick={changeDelivery}
+            name="delivery"
+          >
+            Доставка
+          </button>
+        </div>
 
-                <form action="" className="popup__form delivery-popup__form pickup">
-                    <h1 className="popup__title delivery-popup__title">Выберите пункт выдачи</h1>
-                    <YandexMap />
-                    <button className="popup__button delivery-popup__button" type="submit">Выбрать</button>
-                </form>
-            </div>
+        <form action="" className="popup__form delivery-popup__form del">
+          <h1 className="popup__title delivery-popup__title">
+            Выберите адрес доставки
+          </h1>
+          <input
+            type="text"
+            placeholder="Введите адрес"
+            className="delivery-popup__input"
+            required
+          />
+          <button
+            className="popup__button delivery-popup__button"
+            type="submit"
+          >
+            Выбрать
+          </button>
+        </form>
 
-            <div className="popup popup-pay">
-                <button className="popup__close popup-pay__close" onClick={(event) => closePopup(event.target.closest('.popup'))}><img src={popupClose} alt="" className="popup__close__img popup-pay__close__img" /></button>
+        <form action="" className="popup__form delivery-popup__form pickup">
+          <h1 className="popup__title delivery-popup__title">
+            Выберите пункт выдачи
+          </h1>
+          <YandexMap />
+          <button
+            className="popup__button delivery-popup__button"
+            type="submit"
+          >
+            Выбрать
+          </button>
+        </form>
+      </div>
 
-                <form className="popup__form popup-pay__form">
-                    <h1 className="popup__title popup-pay__title">Введите данные для оплаты</h1>
+      <div className="popup popup-pay">
+        <button
+          className="popup__close popup-pay__close"
+          onClick={(event) => closePopup(event.target.closest(".popup"))}
+        >
+          <img
+            src={popupClose}
+            alt=""
+            className="popup__close__img popup-pay__close__img"
+          />
+        </button>
 
-                    <div className="popup-pay__inputs">
-                        <input className="popup-pay__input popup-pay__card-number__input" placeholder="Номер карты" required type="text" id="card-number" name="card-number" inputMode="numeric" autoComplete="cc-number" pattern="[0-9]+" />
-                        <input className="popup-pay__input popup-pay__date__input popup-pay__input-short" required type="text" id="expiry-date" name="expiry-date" autoComplete="cc-exp" placeholder="MM/YY" minLength="4" pattern="[0-9/]+" />
-                        <input className="popup-pay__input popup-pay__code__input popup-pay__input-short" placeholder="CVC2/CVV2"required type="text" id="security-code" name="security-code" inputMode="numeric" minLength="3" maxLength="4" pattern="[0-9]+" />
-                    </div>
+        <form className="popup__form popup-pay__form">
+          <h1 className="popup__title popup-pay__title">
+            Введите данные для оплаты
+          </h1>
 
-                    <button className="popup__button popup-pay__button">Оплатить {sum} руб.</button>
-                </form>
-            </div>
-        </main>
-    );
-}
+          <div className="popup-pay__inputs">
+            <input
+              className="popup-pay__input popup-pay__card-number__input"
+              placeholder="Номер карты"
+              required
+              type="text"
+              id="card-number"
+              name="card-number"
+              inputMode="numeric"
+              autoComplete="cc-number"
+              pattern="[0-9]+"
+            />
+            <input
+              className="popup-pay__input popup-pay__date__input popup-pay__input-short"
+              required
+              type="text"
+              id="expiry-date"
+              name="expiry-date"
+              autoComplete="cc-exp"
+              placeholder="MM/YY"
+              minLength="4"
+              pattern="[0-9/]+"
+            />
+            <input
+              className="popup-pay__input popup-pay__code__input popup-pay__input-short"
+              placeholder="CVC2/CVV2"
+              required
+              type="text"
+              id="security-code"
+              name="security-code"
+              inputMode="numeric"
+              minLength="3"
+              maxLength="4"
+              pattern="[0-9]+"
+            />
+          </div>
+
+          <button className="popup__button popup-pay__button">
+            Оплатить {sum} руб.
+          </button>
+        </form>
+      </div>
+    </main>
+  );
+};
 
 export default Basket;
