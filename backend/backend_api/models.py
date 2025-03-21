@@ -2,6 +2,7 @@ from django.db import models
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.contenttypes.models import ContentType
 import ast
 
 
@@ -17,7 +18,6 @@ categoryChoices = (
     ("presents", "Подарки"),
     ("stocks", "Акции"),
 )
-
 
 class BookCategory(models.Model):
     name = models.CharField(max_length=100, choices=categoryChoices)
@@ -40,7 +40,7 @@ class User(AbstractUser):
     email = models.CharField(max_length=100, unique=True)
     password = models.CharField(max_length=100)
     groups = models.ManyToManyField(Group, related_name='backend_api_user_set')
-    user_permissions = models.ManyToManyField(Permission, related_name='backend_api_user_set')
+    user_permissions = models.ManyToManyField(Permission, related_name='backend_api_user_set', blank=True)
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
@@ -69,4 +69,3 @@ class BooksForm(ModelForm):
         widgets = {
             "category": forms.CheckboxSelectMultiple,
         }
-
