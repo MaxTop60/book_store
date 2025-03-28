@@ -32,6 +32,7 @@
 .delivery {
     width: 88%;
     margin: 100px auto 0;
+    text-align: start;
 }
 
 .delivery__title {
@@ -63,6 +64,7 @@
 .pay {
     width: 88%;
     margin: 100px auto 0;
+    text-align: start;
 }
 
 .pay__title {

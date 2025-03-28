@@ -30,7 +30,7 @@ const Home = () => {
         const fetchData = async () => {
           try {
             const data = await ApiGetBooks();
-            setBooksList(data);
+            setBooksList(data.reverse());
           } catch (err) {
             console.log(err);
           }

@@ -5,9 +5,8 @@ import React from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import { BooksList } from "../../helpers/BooksList";
-
 import sqrollToHeader from "../../helpers/ScrollToHeader";
+import { ApiGetBooks } from "../../API/API";
 
 import logo from "../../img/logo.svg";
 import search from "../../img/search_icon.svg";
@@ -51,6 +50,21 @@ const Header = () => {
 
     let [searchValue, setSearchValue] = useState('');
     let [searchList, setSearchList] = useState([]);
+
+    const [BooksList, setBooksList] = useState([]);
+    
+        useEffect(() => {
+            const fetchData = async () => {
+              try {
+                const data = await ApiGetBooks();
+                setBooksList(data);
+              } catch (err) {
+                console.log(err);
+              }
+            }
+        
+            fetchData();
+        }, [])
 
     
 
@@ -114,7 +128,7 @@ const Header = () => {
 
             {
                 isAuth
-                    ? <Link to="/logout" className="header__auth">Выйти</Link>
+                    ? <Link to="/profile" className="header__auth">Профиль</Link>
                     :<Link to="/auth" className="header__auth">Войти</Link>
             }
 
@@ -168,7 +182,7 @@ const Header = () => {
 
                 {
                     isAuth
-                        ?<Link to="/logout" className="header__auth header__auth__popup">Выйти</Link>
+                        ?<Link to="/profile" className="header__auth header__auth__popup">Профиль</Link>
                         :<Link to="/auth" className="header__auth header__auth__popup">Войти</Link>
                 }
             </div>

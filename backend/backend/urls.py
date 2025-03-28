@@ -27,12 +27,14 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("token/", jwt_views.TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", jwt_views.TokenRefreshView.as_view(), name="token_refresh"),
+    path('user/', UserView.as_view()),
     path("home/", HomeView.as_view(), name="home"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("register/", RegisterView.as_view(), name="register"),
     path("", BookView.as_view()),
     path("product/:id", BookReviewView.as_view()),
     path("basket/", BasketView.as_view(), name="basket"),
+    path("already_view/", AlreadyViewView.as_view())
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

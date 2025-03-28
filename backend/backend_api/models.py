@@ -58,7 +58,12 @@ class BookReview(models.Model):
 
 
 class Basket(models.Model):
-    userId = models.ForeignKey(User, on_delete=models.CASCADE)
+    userId = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
+    books = models.ManyToManyField(Book, blank=True)
+
+
+class AlreadyView(models.Model):
+    view_userId = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
     books = models.ManyToManyField(Book, blank=True)
 
 

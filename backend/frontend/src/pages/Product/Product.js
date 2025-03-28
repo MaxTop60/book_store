@@ -25,7 +25,7 @@ const Product = () => {
     category: ["books", "stocks"],
   });
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({id: 1});
   const [isAuth, setIsAuth] = useState(false);
   const [data, setData] = useState(null);
 
@@ -101,6 +101,19 @@ const Product = () => {
       setItem(BooksList.find((el) => el.id === parseInt(id)));
     }
   }, [BooksList]);
+
+  useEffect(() => {
+    if (BooksList.length > 0) {
+      (async () => {
+        try {
+          const response = await axios.post('http://127.0.0.1:8000/already_view/', {bookId: item.id, view_userId: user.id});
+        } catch (err) {
+          console.log(err);
+        }
+        const response = await axios.put('http://127.0.0.1:8000/already_view/', {bookId: item.id, view_userId: user.id});
+      })();
+    }
+  }, [item])
 
   useEffect(() => {
     setFilterReviews(reviews.filter((el) => el.bookId === item.id));
@@ -197,7 +210,7 @@ const Product = () => {
     event.target.previousElementSibling.innerText = BasketList.find((el) => el.id === item.id).quantity;
   
     (async () => {
-      const response = await axios.post(`http://127.0.0.1:8000/basket/`, {bookId: item.id, userId: user.id});
+      const response = await axios.put(`http://127.0.0.1:8000/basket/`, {bookId: item.id, user: user.id});
     })()
   }
   
@@ -223,7 +236,12 @@ const Product = () => {
       BasketList.push(item);
   
       (async () => {
-        const response = await axios.post(`http://127.0.0.1:8000/basket/`, {bookId: item.id, userId: user.id});
+        try {
+          const response = await axios.post(`http://127.0.0.1:8000/basket/`, {bookId: item.id, userId: user.id});
+        } catch (err) {
+          console.log(err);
+          const response = await axios.put(`http://127.0.0.1:8000/basket/`, {bookId: item.id, user: user.id});
+        }
       })()
       setCounter(counter + 1);
     } else {

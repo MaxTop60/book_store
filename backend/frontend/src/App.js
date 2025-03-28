@@ -18,6 +18,12 @@ import Auth from "./pages/Auth/Auth.js";
 import Registration from "./pages/Registration/Registration.js";
 import Logout from "./components/Logout/Logout.js";
 import Buy from "./pages/Buy/Buy.js";
+import Profile from "./pages/Profile/Profile.js";
+import Admin from "./pages/Admin/Admin.js";
+import AdminBooks from "./pages/AdminBooks/AdminBooks.js";
+import AdminBookComplete from "./pages/AdminBookComplete/AdminBookComplete.js";
+import AdminBookEdit from "./pages/AdminBookEdit/AdminBookEdit.js";
+import AdminUsers from "./pages/AdminUsers/AdminUsers.js";
 import Footer from "./components/Footer/Footer.js";
 
 import { ApiRegisterUser } from "./API/API.js";
@@ -46,6 +52,12 @@ const App = () => {
               <Route path="/registration" element={<Registration />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/buy/:id" element={<Buy />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path='/admin' element={<Admin />} />
+              <Route path="/admin/books" element={<AdminBooks />} />
+              <Route path="/admin/books/complete" element={<AdminBookComplete />} />
+              <Route path="/admin/books/edit/:id" element={<AdminBookEdit />} />
+              <Route path="/admin/users" element={<AdminUsers />} />
             </Routes>
           </main>
 

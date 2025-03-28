@@ -55,7 +55,7 @@ const Basket = () => {
               axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
               console.log(user);
               try {
-                const response = await axios.get(`http://127.0.0.1:8000/basket/?userId=${user.id}`);
+                const response = await axios.get(`http://127.0.0.1:8000/already_view/?userId=${user.id}`);
                 setBasketList(response.data);
               } catch (error) {
                 console.error(error);
@@ -95,7 +95,12 @@ const Basket = () => {
 
     (async () => {
         console.log(BasketList);
-        const response = await axios.post(`http://127.0.0.1:8000/basket/`, {bookId: BasketList.find((elem) => elem.id === parseInt(event.target.name)).id, userId: user.id});
+        try {
+          const response = await axios.post(`http://127.0.0.1:8000/basket/`, {bookId: BasketList.find((elem) => elem.id === parseInt(event.target.name)).id, userId: user.id});
+        } catch (err) {
+          console.log(err);
+          const response = await axios.put(`http://127.0.0.1:8000/basket/`, {bookId: BasketList.find((elem) => elem.id === parseInt(event.target.name)).id, user: user.id});
+        }
       })()
   }
 

@@ -6,7 +6,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 
 const Review = (props) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({groups: [{name: ''}]});
     const [isAuth, setIsAuth] = useState(false);
     const [data, setData] = useState(null);
   
@@ -67,7 +67,7 @@ const Review = (props) => {
             <div className="reviews__item__text">{props.value}</div>
 
             {
-                user && user.id === props.userId
+                user && (user.id === props.userId || user.groups[0].name === 'Администратор' || user.groups[0].name === 'Менеджер')
                     ? <img src={del} alt="" className="reviews__item__delete" onClick={() => {deleteReview(props.id)}}/>
                     : <></>
             }
