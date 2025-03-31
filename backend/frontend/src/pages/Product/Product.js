@@ -50,7 +50,7 @@ const Product = () => {
         }
       } else {
         console.error("Токен авторизации не найден");
-      }
+      } 
     })();
   }, [isAuth]);
 
@@ -103,7 +103,7 @@ const Product = () => {
   }, [BooksList]);
 
   useEffect(() => {
-    if (BooksList.length > 0) {
+    if (BooksList.length > 0 && isAuth) {
       (async () => {
         try {
           const response = await axios.post('http://127.0.0.1:8000/already_view/', {bookId: item.id, view_userId: user.id});
@@ -146,55 +146,55 @@ const Product = () => {
   }
 
   function formSubmit(event) {
-    if (isAuth) {
-      event.preventDefault();
-
-      const review = document.querySelector(".reviews__form__put-review").value;
-      const marks = document.querySelectorAll(".reviews__form__star");
-      const starsLabels = document.querySelectorAll(
-        ".reviews__form__star-label"
-      );
-
-      let mark;
-      marks.forEach((el) => {
-        if (el.checked) {
-          mark = parseInt(el.id[el.id.length - 1]);
-        }
-      });
-
-      let isSelectedMark = false;
-
-      document.querySelectorAll(".reviews__form__star-label").forEach((el) => {
-        if (el.classList.contains("reviews__form__star-label_active")) {
-          isSelectedMark = true;
-        }
-      });
-
-      if (!review || !isSelectedMark) {
-        alert("Пожалуйста, заполните все поля");
-        return;
+    event.preventDefault();
+  
+    const review = document.querySelector(".reviews__form__put-review").value;
+    const marks = document.querySelectorAll(".reviews__form__star");
+    const starsLabels = document.querySelectorAll(
+      ".reviews__form__star-label"
+    );
+  
+    let mark;
+    marks.forEach((el) => {
+      if (el.checked) {
+        mark = parseInt(el.id[el.id.length - 1]);
       }
-
-      console.log(item.id);
-
-      const newReview = {
-        userId: user.id,
-        bookId: item.id,
-        userName: user.username,
-        value: review,
-        mark: mark,
-      };
-
-      console.log(newReview);
-
-      addReview(newReview);
-
-      starsLabels.forEach((elem) => {
-        elem.classList.remove("reviews__form__star-label_active");
-      });
-
-      document.querySelector(".reviews__form").reset();
-
+    });
+  
+    let isSelectedMark = false;
+  
+    document.querySelectorAll(".reviews__form__star-label").forEach((el) => {
+      if (el.classList.contains("reviews__form__star-label_active")) {
+        isSelectedMark = true;
+      }
+    });
+  
+    if (!review || !isSelectedMark) {
+      alert("Пожалуйста, заполните все поля");
+      return;
+    }
+  
+    console.log(item.id);
+  
+    const newReview = {
+      userId: user.id,
+      bookId: item.id,
+      userName: user.username,
+      value: review,
+      mark: mark,
+    };
+  
+    console.log(newReview);
+  
+    addReview(newReview);
+  
+    starsLabels.forEach((elem) => {
+      elem.classList.remove("reviews__form__star-label_active");
+    });
+  
+    document.querySelector(".reviews__form").reset();
+  
+    if (isAuth) {
       ApiPostReview(newReview);
     } else {
       alert("Вы должны авторизоваться");

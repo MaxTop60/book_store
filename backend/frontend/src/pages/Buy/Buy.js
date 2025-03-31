@@ -1,15 +1,85 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
+
+import { ApiGetBooks } from "../../API/API";
 
 import { useParams } from "react-router-dom";
-import { BooksList } from "../../helpers/BooksList";
 
 import YandexMap from "../../components/YandexMap/YandexMap";
 
 import "./style.css";
 
 const Buy = () => {
-    let {id} = useParams();
-    const item = BooksList[id];
+    const [BooksList, setBooksList] = useState([]);
+    const [reviews, setReviews] = useState([]);
+    const { id } = useParams();
+    const [item, setItem] = useState({
+      id: 1,
+      title: "",
+      author: "",
+      price: 0,
+      img: "",
+      category: ["books", "stocks"],
+    });
+  
+    const [user, setUser] = useState({id: 1});
+    const [isAuth, setIsAuth] = useState(false);
+    const [data, setData] = useState(null);
+  
+    useEffect(() => {
+      if (localStorage.getItem("access_token") !== null) {
+        setIsAuth(true);
+      } else {
+        alert("Вы не авторизованы!");
+        window.location.href = "/";
+      }
+  
+      console.log(isAuth);
+    }, [isAuth]);
+  
+    useEffect(() => {
+      (async () => {
+        const token = localStorage.getItem("access_token");
+        if (token) {
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          try {
+            const response = await axios.get("http://127.0.0.1:8000/home/");
+            setData(response.data);
+          } catch (error) {
+            console.error(error);
+          }
+        } else {
+          console.error("Токен авторизации не найден");
+        }
+      })();
+    }, [isAuth]);
+  
+    useEffect(() => {
+      if (data) {
+        setUser(data);
+        console.log(user);
+      }
+    }, [data]);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await ApiGetBooks();
+          setBooksList(response);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+  
+      fetchData();
+    }, []);
+  
+    useEffect(() => {
+      if (BooksList.length > 0) {
+        console.log(BooksList);
+        setItem(BooksList.find((el) => el.id === parseInt(id)));
+      }
+    }, [BooksList]);
 
     function changeDelivery(event) {
         document.querySelector('.delivery-popup__change-button_active').classList.remove('delivery-popup__change-button_active');

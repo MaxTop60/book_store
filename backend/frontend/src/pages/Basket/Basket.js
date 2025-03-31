@@ -55,7 +55,7 @@ const Basket = () => {
               axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
               console.log(user);
               try {
-                const response = await axios.get(`http://127.0.0.1:8000/already_view/?userId=${user.id}`);
+                const response = await axios.get(`http://127.0.0.1:8000/basket/?userId=${user.id}`);
                 setBasketList(response.data);
               } catch (error) {
                 console.error(error);
