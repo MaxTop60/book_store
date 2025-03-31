@@ -35,7 +35,7 @@ const Auth = () => {
             localStorage.setItem('access_token', data.access);
             localStorage.setItem('refresh_token', data.refresh);
             axios.defaults.headers.common['Authorization'] = `Bearer ${data.access}`;
-            window.location.href = '/';
+            window.location.href = '/book_store';
         } catch(error) {
             if (error.response && error.response.data) {
                 alert('Неверный логин или пароль');
@@ -58,7 +58,7 @@ const Auth = () => {
                 <button type="submit" className="auth-form__button" onClick={Login}>Войти</button>
 
                 <div className="auth-form__links">
-                    <Link to="/registration" className="auth-form__link" onClick={sqrollToHeader}>Регистрация</Link>
+                    <Link to="/book_store/registration" className="auth-form__link" onClick={sqrollToHeader}>Регистрация</Link>
                     <Link to="#" className="auth-form__link">Забыли пароль?</Link>
                 </div>
             </form>

@@ -16,7 +16,7 @@ const refreshAccessToken = async () => {
   if (!refresh_token) {
     // Очистить токены и перенаправить на страницу входа
     localStorage.removeItem('access_token');
-    window.location.href = '/auth';
+    window.location.href = '/book_store/auth';
     return;
   }
 
@@ -36,13 +36,13 @@ const refreshAccessToken = async () => {
       // Очистить токены и перенаправить на страницу входа
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
-      window.location.href = '/auth';
+      window.location.href = '/book_store/auth';
     }
   } catch (error) {
     // Очистить токены и перенаправить на страницу входа
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
-    window.location.href = '/auth';
+    window.location.href = '/book_store/auth';
   }
 
   isRefreshing = false;

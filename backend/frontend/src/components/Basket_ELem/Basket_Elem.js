@@ -72,7 +72,7 @@ const Basket_Elem = (props) => {
     <>
       <Link
         className="basket__elem__link"
-        to={`/product/${props.id}`}
+        to={`/book_store/product/${props.id}`}
         onClick={sqrollToHeader}
       >
         <img

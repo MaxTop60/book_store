@@ -6,6 +6,7 @@ import twitter_icon from "../../img/twitter_icon.svg";
 import vk_icon from "../../img/vk_icon.svg";
 import inst_icon from "../../img/inst_icon.svg";
 import youtube_icon from "../../img/youtube_icon.svg";
+import loading from '../../img/loading.png';
 
 import axios from 'axios';
 
@@ -25,17 +26,19 @@ import { useState, useEffect } from "react";
 
 const Home = () => {
     const [BooksList, setBooksList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
           try {
             const data = await ApiGetBooks();
             setBooksList(data.reverse());
+            setIsLoading(true);
           } catch (err) {
             console.log(err);
           }
         }
-    
+        
         fetchData();
     }, [])
     
@@ -72,19 +75,23 @@ const Home = () => {
                     <h1 className="new-products__title">Горячие поступления</h1>
                     <div className="new-products__container">
                         <img src={navArrow} alt="Назад" onClick={scrollLeft} className="new-products__nav-button new-products__nav-button_back" />
-                        <ul className="new-products__books">
-                            {
-                                BooksList.map((book) => {
-                                    return (
-                                        <li className="new-products__item" key={book.id}>
-                                            <Link to={`/product/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
-                                                <Book key={book.id} id={book.id} img={book.img} title={book.title} author={book.author} price={book.price} />
-                                            </Link>
-                                        </li>
-                                    );
-                                })
-                            }
-                        </ul>
+                        {   
+                            isLoading
+                               ?<ul className="new-products__books">
+                                    {
+                                        BooksList.map((book) => {
+                                            return (
+                                                <li className="new-products__item" key={book.id}>
+                                                    <Link to={`/book_store/product/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
+                                                        <Book key={book.id} id={book.id} img={book.img} title={book.title} author={book.author} price={book.price} />
+                                                    </Link>
+                                                </li>
+                                            );
+                                        })
+                                    }
+                                </ul>
+                               :<img className="loading" src={loading}/>
+                        }
                         <img src={navArrow} alt="Вперёд" onClick={scrollRight} className="new-products__nav-button new-products__nav-button_next"  />
                     </div>
                 </section>
@@ -92,15 +99,15 @@ const Home = () => {
                 <section className="catalog" id="catalog">
                     <h1 className="catalog__title">Каталог</h1>
                     <div className="catalog__items">
-                        <Link className="catalog__item" to="/category/books?name=Книги" onClick={sqrollToHeader}>Книги</Link>
-                        <Link className="catalog__item" to='/category/el-books?name=Электронные книги' onClick={sqrollToHeader}>Электронные книги</Link>
-                        <Link className="catalog__item" to='/category/audio-books?name=Аудиокнинги' onClick={sqrollToHeader}>Аудиокниги</Link>
-                        <Link className="catalog__item" to='/category/toys?name=Игрушки, творчество' onClick={sqrollToHeader}>Игрушки, творчество</Link>
-                        <Link className="catalog__item" to='/category/accessories?name=Книжные аксессуары' onClick={sqrollToHeader}>Книжные аксессуары</Link>
-                        <Link className="catalog__item" to='/category/notebooks?name=Блокноты' onClick={sqrollToHeader}>Блокноты</Link>
-                        <Link className="catalog__item" to='/category/table-games?name=Настольные игры' onClick={sqrollToHeader}>Настольные игры</Link>
-                        <Link className="catalog__item" to='/category/presents?name=Подарки' onClick={sqrollToHeader}>Подарки</Link>
-                        <Link className="catalog__item" to='/category/stocks?name=Акции' onClick={sqrollToHeader}>Акции</Link>
+                        <Link className="catalog__item" to="/book_store/category/books?name=Книги" onClick={sqrollToHeader}>Книги</Link>
+                        <Link className="catalog__item" to='/book_store/category/el-books?name=Электронные книги' onClick={sqrollToHeader}>Электронные книги</Link>
+                        <Link className="catalog__item" to='/book_store/category/audio-books?name=Аудиокнинги' onClick={sqrollToHeader}>Аудиокниги</Link>
+                        <Link className="catalog__item" to='/book_store/category/toys?name=Игрушки, творчество' onClick={sqrollToHeader}>Игрушки, творчество</Link>
+                        <Link className="catalog__item" to='/book_store/category/accessories?name=Книжные аксессуары' onClick={sqrollToHeader}>Книжные аксессуары</Link>
+                        <Link className="catalog__item" to='/book_store/category/notebooks?name=Блокноты' onClick={sqrollToHeader}>Блокноты</Link>
+                        <Link className="catalog__item" to='/book_store/category/table-games?name=Настольные игры' onClick={sqrollToHeader}>Настольные игры</Link>
+                        <Link className="catalog__item" to='/book_store/category/presents?name=Подарки' onClick={sqrollToHeader}>Подарки</Link>
+                        <Link className="catalog__item" to='/book_store/category/stocks?name=Акции' onClick={sqrollToHeader}>Акции</Link>
                     </div>
                 </section>
 

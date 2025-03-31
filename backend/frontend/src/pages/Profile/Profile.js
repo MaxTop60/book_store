@@ -88,7 +88,7 @@ const Profile = () => {
     <main className="main">
       <h1 className="profile__title">Добро пожаловать, {user.username}!</h1>
 
-      <section className="new-products">
+      <section className="new-products already-view">
         <h1 className="new-products__title">Уже смотрели</h1>
         <div className="new-products__container">
           <img
@@ -104,7 +104,7 @@ const Profile = () => {
                   return (
                     <li className="new-products__item" key={book.id}>
                       <Link
-                        to={`/product/${book.id}`}
+                        to={`/book_store/product/${book.id}`}
                         className="new-products__item-link"
                         onClick={sqrollToHeader}
                       >
@@ -133,13 +133,15 @@ const Profile = () => {
       </section>
 
       <div className="links">
-        <Link to="/logout" className="link">
+        <Link to="/book_store/logout" className="link">
           Выйти
         </Link>
 
+        <Link to="/book_store/profile/edit" className="link">Редактировать профиль</Link>
+
         {user.groups[0].name === "Администратор" ||
         user.groups[0].name === "Менеджер" ? (
-          <Link to="/admin" className="link">
+          <Link to="/book_store/admin" className="link">
             Панель администратора
           </Link>
         ) : (

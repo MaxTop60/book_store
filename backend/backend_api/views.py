@@ -210,6 +210,8 @@ class UserView(APIView):
         data = request.data.copy()
         groups_data = data.pop('groups', [])
         data['groups'] = []  # временно добавляем пустой список групп
+        if 'password' not in data:
+            data['password'] = user.password  # если пароль не был предоставлен, устанавливаем его обратно на текущий пароль пользователя
         serializer = UserSerializer(user, data=data)
         if serializer.is_valid():
             user = serializer.save()

@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import YandexMap from "../../components/YandexMap/YandexMap";
 
 import "./style.css";
+import loading from '../../img/loading.png';
 
 const Buy = () => {
     const [BooksList, setBooksList] = useState([]);
@@ -25,13 +26,14 @@ const Buy = () => {
     const [user, setUser] = useState({id: 1});
     const [isAuth, setIsAuth] = useState(false);
     const [data, setData] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
   
     useEffect(() => {
       if (localStorage.getItem("access_token") !== null) {
         setIsAuth(true);
       } else {
         alert("Вы не авторизованы!");
-        window.location.href = "/";
+        window.location.href = "/book_store";
       }
   
       console.log(isAuth);
@@ -78,6 +80,7 @@ const Buy = () => {
       if (BooksList.length > 0) {
         console.log(BooksList);
         setItem(BooksList.find((el) => el.id === parseInt(id)));
+        setIsLoading(true);
       }
     }, [BooksList]);
 
@@ -95,15 +98,20 @@ const Buy = () => {
     }
     return ( 
         <main className="main">
-            <section className="product-info">
-                <img src={item.img} alt={item.title} className="product-info__img" />
+          {
+            isLoading
+              ?<section className="product-info">
+                  <img src={item.img} alt={item.title} className="product-info__img" />
 
-                <div className="product-info__about">
-                <h1 className="product-info__title">{item.title}</h1>
-                <h2 className="product-info__author">{item.author}</h2>
-                <h2 className="product-info__price">{item.price} руб.</h2>
-                </div>
-            </section>
+                  <div className="product-info__about">
+                  <h1 className="product-info__title">{item.title}</h1>
+                  <h2 className="product-info__author">{item.author}</h2>
+                  <h2 className="product-info__price">{item.price} руб.</h2>
+                  </div>
+              </section>
+              :<img src={loading} className="loading"/>
+          }
+            
 
             <section className="buy">
                 <h1 className="buy__title">Выберите адрес доставки</h1>

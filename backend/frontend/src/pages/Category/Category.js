@@ -48,7 +48,7 @@ const Category = () => {
                                 if (book.category.find(el => el === category)) {
                                     return (
                                         <li key={book.id} className="product-list__item">
-                                            <Link to={`/product/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
+                                            <Link to={`/book_store/product/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
                                                 <Book
                                                     key={book.id}
                                                     id={book.id}

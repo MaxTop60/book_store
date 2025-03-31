@@ -22,7 +22,7 @@ const Book = (props) => {
             {
                 props.admin
                     ? <button className="new-products__item-button" onClick={deleteBook}>Удалить</button>
-                    : <div className="new-products__item-button"><Link to={`/product/${props.id}`} className="new-products__item-button-link" onClick={sqrollToHeader}>В корзину</Link></div>
+                    : <div className="new-products__item-button"><Link to={`/book_store/product/${props.id}`} className="new-products__item-button-link" onClick={sqrollToHeader}>В корзину</Link></div>
             }
         </>
     );

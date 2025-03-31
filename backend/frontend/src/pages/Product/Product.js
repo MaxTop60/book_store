@@ -9,6 +9,7 @@ import axios from "axios";
 import sqrollToHeader from "../../helpers/ScrollToHeader";
 
 import "./style.css";
+import loading from '../../img/loading.png';
 
 const Product = () => {
   const [BooksList, setBooksList] = useState([]);
@@ -28,6 +29,7 @@ const Product = () => {
   const [user, setUser] = useState({id: 1});
   const [isAuth, setIsAuth] = useState(false);
   const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (localStorage.getItem("access_token") !== null) {
@@ -99,6 +101,7 @@ const Product = () => {
     if (BooksList.length > 0) {
       console.log(BooksList);
       setItem(BooksList.find((el) => el.id === parseInt(id)));
+      setIsLoading(true);
     }
   }, [BooksList]);
 
@@ -251,52 +254,57 @@ const Product = () => {
 
   return (
     <main className="main">
-      <section className="product-info">
-        <img src={item.img} alt={item.title} className="product-info__img" />
+      {
+        isLoading
+          ?<section className="product-info">
+            <img src={item.img} alt={item.title} className="product-info__img" />
 
-        <div className="product-info__about">
-          <h1 className="product-info__title">{item.title}</h1>
-          <h2 className="product-info__author">{item.author}</h2>
-          <h2 className="product-info__price">{item.price} руб.</h2>
+            <div className="product-info__about">
+              <h1 className="product-info__title">{item.title}</h1>
+              <h2 className="product-info__author">{item.author}</h2>
+              <h2 className="product-info__price">{item.price} руб.</h2>
 
-          <div className="product-info__links">
-            <Link
-              to={{ pathname: `/buy/${item.id}` }}
-              className="product-info__link product-info__link_buy"
-              onClick={sqrollToHeader}
-            >
-              Купить сейчас
-            </Link>
-
-            {BasketList.find((el) => el.id === item.id) ? (
-              <div className="basket__elem__num-of-products">
-                <button
-                  className="basket__elem__num-of-products__button"
-                  onClick={numberMinus}
+              <div className="product-info__links">
+                <Link
+                  to={{ pathname: `/book_store/buy/${item.id}` }}
+                  className="product-info__link product-info__link_buy"
+                  onClick={sqrollToHeader}
                 >
-                  -
-                </button>
-                <h2 className="basket__elem__num-of-products__number">
-                  {BasketList.find((el) => el.id === item.id).quantity}
-                </h2>
-                <button
-                  className="basket__elem__num-of-products__button"
-                  onClick={numberPlus}
-                >
-                  +
-                </button>
+                  Купить сейчас
+                </Link>
+
+                {BasketList.find((el) => el.id === item.id) ? (
+                  <div className="basket__elem__num-of-products">
+                    <button
+                      className="basket__elem__num-of-products__button"
+                      onClick={numberMinus}
+                    >
+                      -
+                    </button>
+                    <h2 className="basket__elem__num-of-products__number">
+                      {BasketList.find((el) => el.id === item.id).quantity}
+                    </h2>
+                    <button
+                      className="basket__elem__num-of-products__button"
+                      onClick={numberPlus}
+                    >
+                      +
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    className="product-info__link product-info__link_to-basket"
+                    onClick={toBasket}
+                  >
+                    В корзину
+                  </button>
+                )}
               </div>
-            ) : (
-              <button
-                className="product-info__link product-info__link_to-basket"
-                onClick={toBasket}
-              >
-                В корзину
-              </button>
-            )}
-          </div>
-        </div>
-      </section>
+            </div>
+          </section>
+          :<img src={loading} className="loading"/>
+      }
+      
 
       <section className="reviews">
         <form className="reviews__form">

@@ -19,6 +19,7 @@ import Registration from "./pages/Registration/Registration.js";
 import Logout from "./components/Logout/Logout.js";
 import Buy from "./pages/Buy/Buy.js";
 import Profile from "./pages/Profile/Profile.js";
+import ProfileEdit from "./pages/ProfileEdit/ProfileEdit.js";
 import Admin from "./pages/Admin/Admin.js";
 import AdminBooks from "./pages/AdminBooks/AdminBooks.js";
 import AdminBookComplete from "./pages/AdminBookComplete/AdminBookComplete.js";
@@ -44,20 +45,21 @@ const App = () => {
 
           <main className="content"> {/* Добавил контейнер для основного контента */}
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/product/:id" element={<Product />} />
-              <Route path="/basket" element={<Basket />} />
-              <Route path="/category/:category" element={<Category />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/registration" element={<Registration />} />
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/buy/:id" element={<Buy />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path='/admin' element={<Admin />} />
-              <Route path="/admin/books" element={<AdminBooks />} />
-              <Route path="/admin/books/complete" element={<AdminBookComplete />} />
-              <Route path="/admin/books/edit/:id" element={<AdminBookEdit />} />
-              <Route path="/admin/users" element={<AdminUsers />} />
+              <Route path="/book_store/" element={<Home />} />
+              <Route path="/book_store/product/:id" element={<Product />} />
+              <Route path="/book_store/basket" element={<Basket />} />
+              <Route path="/book_store/category/:category" element={<Category />} />
+              <Route path="/book_store/auth" element={<Auth />} />
+              <Route path="/book_store/registration" element={<Registration />} />
+              <Route path="/book_store/logout" element={<Logout />} />
+              <Route path="/book_store/buy/:id" element={<Buy />} />
+              <Route path="/book_store/profile" element={<Profile />} />
+              <Route path="/book_store/profile/edit" element={<ProfileEdit />} />
+              <Route path='/book_store/admin' element={<Admin />} />
+              <Route path="/book_store/admin/books" element={<AdminBooks />} />
+              <Route path="/book_store/admin/books/complete" element={<AdminBookComplete />} />
+              <Route path="/book_store/admin/books/edit/:id" element={<AdminBookEdit />} />
+              <Route path="/book_store/admin/users" element={<AdminUsers />} />
             </Routes>
           </main>
 

@@ -11,7 +11,7 @@ const Logout = () => {
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');
             delete axios.defaults.headers.common['Authorization'];
-            window.location.href = '/auth'
+            window.location.href = '/book_store/auth'
           }catch(e){
             console.log('logout not work',e)
           }

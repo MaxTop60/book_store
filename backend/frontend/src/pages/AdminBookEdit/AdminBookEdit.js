@@ -45,7 +45,7 @@ const AdminBookEdit = () => {
             console.log(user);
             if (!(user.groups.find(elem => elem.name === 'Администратор' || user.groups.find(elem => elem.name === 'Менеджер')))) {
                 alert('Нет прав');
-                window.location.href = '/';
+                window.location.href = '/book_store';
             }
         }
     }, [user])
@@ -105,7 +105,7 @@ const AdminBookEdit = () => {
       console.log(response.status);
     }
 
-    window.location.href = "/admin/books";
+    window.location.href = "/book_store/admin/books";
   };
 
 

@@ -44,7 +44,7 @@ const Admin = () => {
             console.log(user);
             if (!(user.groups.find(elem => elem.name === 'Администратор' || user.groups.find(elem => elem.name === 'Менеджер')))) {
                 alert('Нет прав');
-                window.location.href = '/';
+                window.location.href = '/book_store';
             }
         }
     }, [user])
@@ -54,11 +54,11 @@ const Admin = () => {
             <h1 className="title">Панель администратора</h1>
 
             <div className="links">
-              <Link to='/admin/books' className="link">Товары</Link>
+              <Link to='/book_store/admin/books' className="link">Товары</Link>
 
               {
                 user.groups[0].name === 'Администратор'
-                  ? <Link to='/admin/users' className="link">Пользователи</Link>
+                  ? <Link to='/book_store/admin/users' className="link">Пользователи</Link>
                   : <></>
               }
             </div>

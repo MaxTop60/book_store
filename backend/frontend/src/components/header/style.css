@@ -128,6 +128,7 @@
     transition: 0.4s;
     background-color: transparent;
     border: none;
+    position: relative;
 }
 
 .header__basket:hover {
@@ -136,6 +137,22 @@
 
 .header__basket-image {
     width: 30px;
+}
+
+.basket-counter {
+    position: absolute;
+    background-color: rgba(225, 106, 0, 1);
+    color: white;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-weight: bold;
+    bottom: -5px;
+    right: -13px;
 }
 
 .header__auth {
@@ -249,12 +266,18 @@
     }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 520px) {
     .header__auth {
         display: none;
     }
 
     .header__auth__popup {
         display: block;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .header__basket {
+        scale: 0.9;
     }
 }

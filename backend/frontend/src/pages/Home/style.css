@@ -1,3 +1,12 @@
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .preview {
     width: 80%;
     display: flex;
@@ -130,6 +139,11 @@
     opacity: 0.5;
 }
 
+.loading {
+    width: 40px;
+    animation: rotate 1s linear infinite;
+}
+
 .catalog {
     text-align: center;
     margin-top: 100px;
@@ -259,6 +273,13 @@
 @media screen and (max-width: 426px) {
     .contacts__item-img {
         width: 50px;
+    }
+
+    .new-products {
+        width: 100%;
+    }
+    .new-products__books {
+        width: 60%;
     }
 }
 

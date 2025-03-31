@@ -33,7 +33,7 @@ const Registration = () => {
 
             try {
                 await axios.post('http://127.0.0.1:8000/register/', user, config)
-                window.location.href ='/auth';
+                window.location.href ='/book_store/auth';
 
                 alert('Пользователь успешно зарегистрирован');
             } catch(error) {
@@ -64,7 +64,7 @@ const Registration = () => {
                 <button type="submit" className="auth-form__button reg-form__button" onClick={submit}>Зарегистрироваться</button>
 
                 <div className="auth-form__links">
-                    <Link to="/auth" className="auth-form__link" onClick={sqrollToHeader}>Уже зарегистрированны?</Link>
+                    <Link to="/book_store/auth" className="auth-form__link" onClick={sqrollToHeader}>Уже зарегистрированны?</Link>
                 </div>
             </form>
         </main>

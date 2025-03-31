@@ -49,7 +49,7 @@ const Admin = () => {
             console.log(user);
             if (!(user.groups.find(elem => elem.name === 'Администратор' || user.groups.find(elem => elem.name === 'Менеджер')))) {
                 alert('Нет прав');
-                window.location.href = '/';
+                window.location.href = '/book_store';
             }
         }
     }, [user])
@@ -72,7 +72,7 @@ const Admin = () => {
 
     return ( 
         <main className="main">
-            <Link to='/admin/books/complete' className="link add-product_link">Добавить товар</Link>
+            <Link to='/book_store/admin/books/complete' className="link add-product_link">Добавить товар</Link>
 
             <div className="main__container">
                 <ul className="product-list">
@@ -82,7 +82,7 @@ const Admin = () => {
                             ? BooksList.map((book) => {
                                     return (
                                         <li key={book.id} className="product-list__item">
-                                            <Link to={`/admin/books/edit/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
+                                            <Link to={`/book_store/admin/books/edit/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
                                                 <Book
                                                     key={book.id}
                                                     id={book.id}
