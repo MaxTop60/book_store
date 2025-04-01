@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group, Permission
-from .models import Book, BooksForm, BookCategory, categoryChoices, BookReview, User, Basket, AlreadyView
+from .models import Book, BooksForm, BookCategory, categoryChoices, BookReview, User, Basket, AlreadyView, Order
 
 # Register your models here.
 class BookAdmin(admin.ModelAdmin):
@@ -14,3 +14,4 @@ admin.site.register(BookCategory)
 admin.site.register(User)
 admin.site.register(Basket)
 admin.site.register(AlreadyView)
+admin.site.register(Order)

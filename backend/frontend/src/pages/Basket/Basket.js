@@ -111,11 +111,13 @@ const Basket = () => {
         setSum(sum - price);
         (async () => {
             const response = await axios.delete(`http://127.0.0.1:8000/basket/`, {data:{bookId: BasketList.find((elem) => elem.id === parseInt(event.target.name)).id, userId: user.id}});
-      
           })()
 
-          document.querySelector(".basket__container").innerHTML =
-          '<p class="basket__empty">Ваша корзина пуста</p>';
+
+
+          if (document.querySelector(".basket__container").children.length === 1) {
+            window.location.reload();
+          }
         return result;
       }
     } else {
@@ -141,6 +143,20 @@ const Basket = () => {
       document.querySelector(".pickup").style.display = "flex";
       document.querySelector(".del").style.display = "none";
     }
+  }
+
+  function buySubmit(event) {
+    event.preventDefault();
+
+    BasketList.forEach((item) => {
+      for (let i = 0; i <= item.quantity; i++) {
+        axios.post('http://127.0.0.1:8000/home/', { user, book_id: item.id });
+        axios.delete(`http://127.0.0.1:8000/basket/`, {data:{bookId: item.id, userId: user.id}})
+      }
+    })
+
+    alert('Спасибо за покупку!')
+    window.location.href = "/book_store/profile";
   }
 
   return (
@@ -282,7 +298,7 @@ const Basket = () => {
             <input
               className="popup-pay__input popup-pay__card-number__input"
               placeholder="Номер карты"
-              required
+              
               type="text"
               id="card-number"
               name="card-number"
@@ -292,7 +308,7 @@ const Basket = () => {
             />
             <input
               className="popup-pay__input popup-pay__date__input popup-pay__input-short"
-              required
+              
               type="text"
               id="expiry-date"
               name="expiry-date"
@@ -304,7 +320,7 @@ const Basket = () => {
             <input
               className="popup-pay__input popup-pay__code__input popup-pay__input-short"
               placeholder="CVC2/CVV2"
-              required
+              
               type="text"
               id="security-code"
               name="security-code"
@@ -315,7 +331,7 @@ const Basket = () => {
             />
           </div>
 
-          <button className="popup__button popup-pay__button">
+          <button className="popup__button popup-pay__button" onClick={buySubmit}>
             Оплатить {sum} руб.
           </button>
         </form>

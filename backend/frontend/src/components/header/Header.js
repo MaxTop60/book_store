@@ -163,10 +163,10 @@ const Header = () => {
 
 
             <button className="header__basket" onClick={() => {
-                if (isAuth === false) {
-                    alert("Вы должны авторизироваться.");
-                    window.location.href = '/auth';
-                }
+                // if (isAuth === false) {
+                //     alert("Вы должны авторизироваться.");
+                //     window.location.href = '/book_store/auth';
+                // }
             }}>
                 <Link to="/book_store/basket" className="header__basket-link"><img src={basket} alt="Корзина" className="header__basket-image"/></Link>
 

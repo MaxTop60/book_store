@@ -96,6 +96,23 @@ const Buy = () => {
             document.querySelector('.del').style.display = 'none';
         }
     }
+
+    function buySubmit(event) {
+      event.preventDefault();
+
+      try {
+        (async () => {
+          await axios.post('http://127.0.0.1:8000/home/', { user, book_id: item.id });
+        })();
+
+        alert('Спасибо за покупку!')
+        window.location.href = "/book_store/profile";
+
+      } catch (err) {
+        console.log(err);
+      }      
+    }
+
     return ( 
         <main className="main">
           {
@@ -143,12 +160,12 @@ const Buy = () => {
                     <h1 className="buy__form__title">Введите данные для оплаты</h1>
 
                     <div className="popup-pay__inputs">
-                        <input className="popup-pay__input popup-pay__card-number__input" placeholder="Номер карты" required type="text" id="card-number" name="card-number" inputMode="numeric" autoComplete="cc-number" pattern="[0-9]+" />
-                        <input className="popup-pay__input popup-pay__date__input popup-pay__input-short" required type="text" id="expiry-date" name="expiry-date" autoComplete="cc-exp" placeholder="MM/YY" minLength="4" pattern="[0-9/]+" />
-                        <input className="popup-pay__input popup-pay__code__input popup-pay__input-short" placeholder="CVC2/CVV2"required type="text" id="security-code" name="security-code" inputMode="numeric" minLength="3" maxLength="4" pattern="[0-9]+" />
+                        <input className="popup-pay__input popup-pay__card-number__input" placeholder="Номер карты" type="text" id="card-number" name="card-number" inputMode="numeric" autoComplete="cc-number" pattern="[0-9]+" />
+                        <input className="popup-pay__input popup-pay__date__input popup-pay__input-short" type="text" id="expiry-date" name="expiry-date" autoComplete="cc-exp" placeholder="MM/YY" minLength="4" pattern="[0-9/]+" />
+                        <input className="popup-pay__input popup-pay__code__input popup-pay__input-short" placeholder="CVC2/CVV2" type="text" id="security-code" name="security-code" inputMode="numeric" minLength="3" maxLength="4" pattern="[0-9]+" />
                     </div>
 
-                    <button className="popup__button popup-pay__button">Оплатить {item.price} руб.</button>
+                    <button className="popup__button popup-pay__button" onClick={buySubmit}>Оплатить {item.price} руб.</button>
                 </form>
             </section>
 

@@ -20,6 +20,7 @@ import Logout from "./components/Logout/Logout.js";
 import Buy from "./pages/Buy/Buy.js";
 import Profile from "./pages/Profile/Profile.js";
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit.js";
+import Order from "./pages/Order/Order.js";
 import Admin from "./pages/Admin/Admin.js";
 import AdminBooks from "./pages/AdminBooks/AdminBooks.js";
 import AdminBookComplete from "./pages/AdminBookComplete/AdminBookComplete.js";
@@ -55,6 +56,7 @@ const App = () => {
               <Route path="/book_store/buy/:id" element={<Buy />} />
               <Route path="/book_store/profile" element={<Profile />} />
               <Route path="/book_store/profile/edit" element={<ProfileEdit />} />
+              <Route path="/book_store/order/:id" element={<Order />} />
               <Route path='/book_store/admin' element={<Admin />} />
               <Route path="/book_store/admin/books" element={<AdminBooks />} />
               <Route path="/book_store/admin/books/complete" element={<AdminBookComplete />} />

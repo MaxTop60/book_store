@@ -101,7 +101,7 @@ const Basket_Elem = (props) => {
                   BasketList.findIndex((el) => el.id === props.id),
                   1
                 );
-
+                event.target.parentNode.parentNode.remove()
               }
             }
           }}

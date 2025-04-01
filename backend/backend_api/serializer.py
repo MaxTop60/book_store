@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book, BookReview, BookCategory, User, Basket, Group, Permission, AlreadyView
+from .models import Book, BookReview, BookCategory, User, Basket, Group, Permission, AlreadyView, Order
 
 class BookCategorySerializer(serializers.ModelSerializer):
     class Meta: 
@@ -35,18 +35,33 @@ class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = ('name', 'permissions')
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    book = BookSerializer()
+    userId = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+
+    class Meta:
+        model = Order
+        fields = ('id', 'userId', 'book', 'is_ordered', 'status')
+
     
 
 class UserSerializer(serializers.ModelSerializer):
     groups = GroupSerializer(many=True)
+    orders = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'groups', 'username')
+        fields = ('id', 'email', 'groups', 'username', 'orders')
         extra_kwargs = {
             'password': {'write_only': True},
             'email': {'required': False},
         }
+
+    def get_orders(self, obj):
+        orders = Order.objects.filter(userId=obj)
+        return OrderSerializer(orders, many=True).data
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
@@ -93,6 +108,7 @@ class UserSerializer(serializers.ModelSerializer):
             instance.groups.add(group)
 
         return instance
+
 
     
 class BasketSerializer(serializers.ModelSerializer):

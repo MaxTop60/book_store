@@ -237,7 +237,7 @@ const Product = () => {
       event.target.style.display = "none";
       item.quantity = 1;
       BasketList.push(item);
-  
+      document.querySelector('.basket-counter').innerHTML = BasketList.length;
       (async () => {
         try {
           const response = await axios.post(`http://127.0.0.1:8000/basket/`, {bookId: item.id, userId: user.id});

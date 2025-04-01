@@ -9,7 +9,7 @@ import sqrollToHeader from "../../helpers/ScrollToHeader";
 import Book from "../../components/Book/Book";
 
 const Profile = () => {
-  const [user, setUser] = useState({ basketList: [], groups: [{ name: "" }] });
+  const [user, setUser] = useState({ basketList: [], groups: [{ name: "" }], orders: [] });
   const [alreadyView, setAlreadyView] = useState([]);
 
   const [isAuth, setIsAuth] = useState(false);
@@ -70,18 +70,34 @@ const Profile = () => {
     }
   }, [user])
 
-  const scrollRight = () => {
-    document.querySelector('.new-products__books').scrollBy({
-      left: 500,
-      behavior: 'smooth'
-    });
+  const scrollRight = (name) => {
+    if (name === 'view') {
+      document.querySelector('.new-products__books_a').scrollBy({
+        left: 500,
+        behavior: 'smooth'
+      });
+    } else {
+      document.querySelector('.new-products__books_o').scrollBy({
+        left: 500,
+        behavior: 'smooth'
+      });
+    }
+    
   }
 
-  const scrollLeft = () => {
-      document.querySelector('.new-products__books').scrollBy({
+  const scrollLeft = (name) => {
+    if (name === 'view') {
+      document.querySelector('.new-products__books_a').scrollBy({
         left: -500,
         behavior: 'smooth'
       });
+    } else {
+      document.querySelector('.new-products__books_o').scrollBy({
+        left: -500,
+        behavior: 'smooth'
+      });
+    }
+      
   }
 
   return (
@@ -94,12 +110,12 @@ const Profile = () => {
           <img
             src={navArrow}
             alt="Назад"
-            onClick={scrollLeft}
+            onClick={() => scrollLeft('view')}
             className="new-products__nav-button new-products__nav-button_back"
           />
           {
             alreadyView.length > 0
-            ? <ul className="new-products__books">
+            ? <ul className="new-products__books new-products__books_a">
                 {alreadyView.reverse().map((book) => {
                   return (
                     <li className="new-products__item" key={book.id}>
@@ -121,12 +137,56 @@ const Profile = () => {
                   );
                 })}
               </ul>
-            : <p className="new-products__text">Вы ещё ничего не смотрели</p>
+            : <p className="new-products__text new-products__books_a">Вы ещё ничего не смотрели</p>
           }
           <img
             src={navArrow}
             alt="Вперёд"
-            onClick={scrollRight}
+            onClick={() => scrollRight('view')}
+            className="new-products__nav-button new-products__nav-button_next"
+          />
+        </div>
+      </section>
+
+      <section className="new-products already-view">
+        <h1 className="new-products__title">Ваши заказы</h1>
+        <div className="new-products__container">
+          <img
+            src={navArrow}
+            alt="Назад"
+            onClick={() => scrollLeft('order')}
+            className="new-products__nav-button new-products__nav-button_back"
+          />
+          {
+            user.orders.length > 0
+            ? <ul className="new-products__books new-products__books_o">
+                {user.orders.map((book) => {
+                  return (
+                    <li className="new-products__item" key={book.book.id}>
+                      <Link
+                        to={`/book_store/order/${book.id}`}
+                        className="new-products__item-link"
+                        onClick={sqrollToHeader}
+                      >
+                        <Book
+                          key={book.book.id}
+                          id={book.book.id}
+                          img={'http://127.0.0.1:8000' + book.book.img}
+                          title={book.book.title}
+                          author={book.book.author}
+                          price={book.book.price}
+                        />
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            : <p className="new-products__text new-products__books_o">Список заказов пуст.</p>
+          }
+          <img
+            src={navArrow}
+            alt="Вперёд"
+            onClick={() => scrollRight('order')}
             className="new-products__nav-button new-products__nav-button_next"
           />
         </div>

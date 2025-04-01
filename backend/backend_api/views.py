@@ -5,8 +5,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from .models import Book, BookReview, Basket, User, BookCategory, Group, Permission, AlreadyView
-from .serializer import BookSerializer, BookReviewSerializer, UserSerializer, BasketSerializer, BookCategorySerializer, AlreadyViewSerializer
+from .models import Book, BookReview, Basket, User, BookCategory, Group, Permission, AlreadyView, Order
+from .serializer import BookSerializer, BookReviewSerializer, UserSerializer, BasketSerializer, OrderSerializer, BookCategorySerializer, AlreadyViewSerializer
 from rest_framework import viewsets, status, authentication
 
 from django.core.files.base import File
@@ -230,12 +230,6 @@ class UserView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
-
-
-
-
-
 class HomeView(APIView):
     permission_classes = (IsAuthenticated,)
     authentication_classes = (JWTAuthentication,)
@@ -252,6 +246,13 @@ class HomeView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def post(self, request):
+        user = request.user
+        book = Book.objects.get(id=request.data['book_id'])
+        order = Order.objects.create(userId=user, book=book, is_ordered=True, status="processing")
+        return Response(OrderSerializer(order).data)
+
 
 
     

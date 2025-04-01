@@ -67,6 +67,18 @@ class AlreadyView(models.Model):
     books = models.ManyToManyField(Book, blank=True)
 
 
+class Order(models.Model):
+    userId = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    is_ordered = models.BooleanField(default=False)
+    status = models.CharField(max_length=100, choices=(
+        ("processing", "В обработке"),
+        ("assembling", "На сборке"),
+        ("in_transit", "В пути"),
+        ("ready_to_pick_up", "Можно забирать"),
+    ), default="processing")
+
+
 class BooksForm(ModelForm):
     class Meta:
         model = Book
