@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from .models import Book, BookReview, Basket, User, BookCategory, Group, Permission, AlreadyView, Order
+from .models import Book, BookReview, Basket, User, BookCategory, Group, Permission, AlreadyView, Order, Favourites
 from .serializer import BookSerializer, BookReviewSerializer, UserSerializer, BasketSerializer, OrderSerializer, BookCategorySerializer, AlreadyViewSerializer
 from rest_framework import viewsets, status, authentication
 
@@ -250,8 +250,47 @@ class HomeView(APIView):
     def post(self, request):
         user = request.user
         book = Book.objects.get(id=request.data['book_id'])
+
         order = Order.objects.create(userId=user, book=book, is_ordered=True, status="processing")
-        return Response(OrderSerializer(order).data)
+        try: 
+            return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
+        except: return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request):
+        user = request.user
+        book = Book.objects.get(id=request.data['book_id'])
+
+        order = Order.objects.get(userId=user, book=book)
+        order.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class FavouritesView(APIView):
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (JWTAuthentication,)
+
+    def post(self, request):
+        user = request.user
+        book = Book.objects.get(id=request.data['book_id'])
+        try:
+            favourites = Favourites.objects.get(userId=user)
+        except Favourites.DoesNotExist:
+            favourites = Favourites.objects.create(userId=user)
+        favourites.books.add(book)
+        favourites.save()
+        return Response(status=status.HTTP_201_CREATED)
+
+    def delete(self, request):
+        user = request.user
+        book = Book.objects.get(id=request.data['book_id'])
+        try:
+            favourites = Favourites.objects.get(userId=user)
+        except Favourites.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        favourites.books.remove(book)
+        favourites.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 

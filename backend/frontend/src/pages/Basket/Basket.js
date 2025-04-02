@@ -7,6 +7,7 @@ import popupClose from "../../img/close_icon_dark.png";
 
 import { useState, useMemo, useEffect } from "react";
 import axios from "axios";
+import emailjs from 'emailjs-com';
 
 import "./style.css";
 
@@ -154,6 +155,13 @@ const Basket = () => {
         axios.delete(`http://127.0.0.1:8000/basket/`, {data:{bookId: item.id, userId: user.id}})
       }
     })
+
+    emailjs.send('service_nv3ifui', 'template_n0g5tdp', { email: user.email }, 'L8SmviZVaTGGCa4kn')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
 
     alert('Спасибо за покупку!')
     window.location.href = "/book_store/profile";

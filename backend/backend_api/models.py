@@ -78,6 +78,10 @@ class Order(models.Model):
         ("ready_to_pick_up", "Можно забирать"),
     ), default="processing")
 
+class Favourites(models.Model):
+    userId = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
+    books = models.ManyToManyField(Book, blank=True)
+
 
 class BooksForm(ModelForm):
     class Meta:

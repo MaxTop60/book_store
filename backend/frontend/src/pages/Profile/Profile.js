@@ -207,6 +207,8 @@ const Profile = () => {
         ) : (
           <></>
         )}
+
+        <Link to="/book_store/favourites" className="link">Избранное</Link>
       </div>
     </main>
   );

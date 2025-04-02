@@ -17,9 +17,16 @@
     color: black;
 }
 
+
+.new-products__item-image-container {
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .new-products__item-image {
     width: 100%;
-    max-height: 190px;
+    height: 190px;
 }
 
 .new-products__item-price {

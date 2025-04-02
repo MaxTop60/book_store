@@ -10,6 +10,8 @@ import YandexMap from "../../components/YandexMap/YandexMap";
 import "./style.css";
 import loading from '../../img/loading.png';
 
+import emailjs from 'emailjs-com'
+
 const Buy = () => {
     const [BooksList, setBooksList] = useState([]);
     const [reviews, setReviews] = useState([]);
@@ -103,6 +105,13 @@ const Buy = () => {
       try {
         (async () => {
           await axios.post('http://127.0.0.1:8000/home/', { user, book_id: item.id });
+
+          emailjs.send('service_nv3ifui', 'template_n0g5tdp', { email: user.email }, 'L8SmviZVaTGGCa4kn')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
         })();
 
         alert('Спасибо за покупку!')
@@ -110,6 +119,7 @@ const Buy = () => {
 
       } catch (err) {
         console.log(err);
+        alert('Ошибка при оформлении заказа');
       }      
     }
 

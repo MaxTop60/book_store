@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book, BookReview, BookCategory, User, Basket, Group, Permission, AlreadyView, Order
+from .models import Book, BookReview, BookCategory, User, Basket, Group, Permission, AlreadyView, Order, Favourites
 
 class BookCategorySerializer(serializers.ModelSerializer):
     class Meta: 
@@ -45,15 +45,23 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = ('id', 'userId', 'book', 'is_ordered', 'status')
 
-    
+
+class FavouritesSerializer(serializers.ModelSerializer):
+    books = BookSerializer(many=True)
+
+    class Meta:
+        model = Favourites
+        fields = ('userId', 'books')
+
 
 class UserSerializer(serializers.ModelSerializer):
     groups = GroupSerializer(many=True)
     orders = serializers.SerializerMethodField()
+    favourites = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'groups', 'username', 'orders')
+        fields = ('id', 'email', 'groups', 'username', 'orders', 'favourites')
         extra_kwargs = {
             'password': {'write_only': True},
             'email': {'required': False},
@@ -62,6 +70,11 @@ class UserSerializer(serializers.ModelSerializer):
     def get_orders(self, obj):
         orders = Order.objects.filter(userId=obj)
         return OrderSerializer(orders, many=True).data
+
+    def get_favourites(self, obj):
+        favourites, created = Favourites.objects.get_or_create(userId=obj)
+        return FavouritesSerializer(favourites).data
+
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)

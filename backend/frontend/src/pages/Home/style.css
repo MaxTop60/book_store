@@ -140,7 +140,7 @@
 }
 
 .loading {
-    width: 40px;
+    width: 50px;
     animation: rotate 1s linear infinite;
 }
 

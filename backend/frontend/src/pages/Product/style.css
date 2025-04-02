@@ -61,6 +61,22 @@
     display: none;
 }
 
+.to-favouriets {
+    background-color: transparent;
+    border: none;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.to-favouriets__img {
+    width: 40px;
+    transition: 0.2s;
+}
+
+.to-favouriets:hover .to-favouriets__img{
+    transform: scale(1.1);
+}
+
 .reviews {
     width: 90%;
     margin: auto;

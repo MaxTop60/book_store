@@ -43,9 +43,13 @@ INSTALLED_APPS = [
     "rest_framework",
     'rest_framework_simplejwt.token_blacklist',
     "corsheaders",
+    'sendgrid',
     "backend_api",
     "frontend",
 ]
+
+DEFAULT_FROM_EMAIL = 'maxsimtorub@gmail.com'
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

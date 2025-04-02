@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 
 import { data, Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -10,6 +10,8 @@ import sqrollToHeader from "../../helpers/ScrollToHeader";
 
 import "./style.css";
 import loading from '../../img/loading.png';
+import heart from '../../img/heart.png';
+import heart_active from '../../img/heart_active.png'
 
 const Product = () => {
   const [BooksList, setBooksList] = useState([]);
@@ -30,6 +32,7 @@ const Product = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false)
+  const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("access_token") !== null) {
@@ -117,6 +120,15 @@ const Product = () => {
       })();
     }
   }, [item])
+
+  useEffect(() => {
+    if (user.favourites && user.favourites.books.find((el) => el.id == item.id)) {
+      console.log('fav');
+      setIsFav(true);
+    } else {
+      setIsFav(false);
+    }
+  }, [user, item])
 
   useEffect(() => {
     setFilterReviews(reviews.filter((el) => el.bookId === item.id));
@@ -252,6 +264,18 @@ const Product = () => {
     }
   }
 
+  function toFavouriets(event) {
+    if (isAuth) {
+      if (isFav) {
+        setIsFav(false);
+        axios.delete('http://127.0.0.1:8000/favourites/', {data: {book_id: item.id}})
+      } else {
+        axios.post('http://127.0.0.1:8000/favourites/', {book_id: item.id, userId: user.id})
+        setIsFav(true);
+      }
+    }
+  }
+
   return (
     <main className="main">
       {
@@ -299,6 +323,8 @@ const Product = () => {
                     В корзину
                   </button>
                 )}
+
+                <button className="to-favouriets" onClick={toFavouriets}><img src={isFav ? heart_active : heart} alt="" className="to-favouriets__img" /></button>
               </div>
             </div>
           </section>
