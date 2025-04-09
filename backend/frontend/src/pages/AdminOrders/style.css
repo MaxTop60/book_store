@@ -1,0 +1,7 @@
+.orders__container {
+    flex-direction: column;
+}
+
+.orders__list {
+    margin-top: 50px;
+}

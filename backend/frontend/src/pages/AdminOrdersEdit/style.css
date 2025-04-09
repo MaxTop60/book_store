@@ -1,0 +1,10 @@
+.status__change {
+    display: block;
+    margin: auto;
+    width: 250px;
+}
+
+.status__submit {
+    margin-top: 50px;
+    border: none;
+}

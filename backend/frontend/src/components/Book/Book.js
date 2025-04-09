@@ -8,7 +8,13 @@ import axios from "axios";
 const Book = (props) => {
     const deleteBook = (event) => {
         event.preventDefault();
-        axios.delete(`http://localhost:8000/`, {data: {id: props.id}});
+
+        if (!props.order) {
+            axios.delete(`http://localhost:8000/`, {data: {id: props.id}});
+        } else {
+            axios.delete('http://localhost:8000/user/', {data: {user_id: props.userId, order_id: props.orderId}})
+        } 
+
         event.target.parentNode.parentNode.remove();
     }
 

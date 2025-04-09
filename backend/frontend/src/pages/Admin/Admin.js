@@ -56,6 +56,8 @@ const Admin = () => {
             <div className="links">
               <Link to='/book_store/admin/books' className="link">Товары</Link>
 
+              <Link to='/book_store/admin/orders' className="link">Заказы</Link>
+
               {
                 user.groups[0].name === 'Администратор'
                   ? <Link to='/book_store/admin/users' className="link">Пользователи</Link>

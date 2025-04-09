@@ -229,6 +229,17 @@ class UserView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request):
+        user_id = request.data['user_id']
+        order_id = request.data['order_id']
+
+        user = User.objects.get(id=user_id)
+        order = Order.objects.get(id=order_id, userId=user)
+
+        order.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 
 class HomeView(APIView):
     permission_classes = (IsAuthenticated,)
@@ -290,7 +301,16 @@ class FavouritesView(APIView):
         favourites.books.remove(book)
         favourites.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+    
+class OrdersView(APIView):
+    permission_classes = (AllowAny,)
+    
+    def put(self, request):
+        order = Order.objects.get(id=request.data['id'])
+        stat = request.data['status']
+        order.status = stat
+        order.save()
+        return Response(OrderSerializer(order).data)
 
 
 

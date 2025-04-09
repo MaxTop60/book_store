@@ -30,6 +30,7 @@ urlpatterns = [
     path('user/', UserView.as_view()),
     path("home/", HomeView.as_view(), name="home"),
     path('favourites/', FavouritesView.as_view()),
+    path('orders/', OrdersView.as_view()),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("register/", RegisterView.as_view(), name="register"),
     path("", BookView.as_view()),

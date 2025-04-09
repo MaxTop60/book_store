@@ -23,6 +23,8 @@ import ProfileEdit from "./pages/ProfileEdit/ProfileEdit.js";
 import Order from "./pages/Order/Order.js";
 import Favourites from "./pages/Favourites/Favourites.js";
 import Admin from "./pages/Admin/Admin.js";
+import AdminOrders from "./pages/AdminOrders/AdminOrders.js";
+import AdminOrdersEdit from "./pages/AdminOrdersEdit/AdminOrdersEdit.js";
 import AdminBooks from "./pages/AdminBooks/AdminBooks.js";
 import AdminBookComplete from "./pages/AdminBookComplete/AdminBookComplete.js";
 import AdminBookEdit from "./pages/AdminBookEdit/AdminBookEdit.js";
@@ -60,6 +62,8 @@ const App = () => {
               <Route path="/book_store/order/:id" element={<Order />} />
               <Route path="/book_store/favourites" element={<Favourites />} />
               <Route path='/book_store/admin' element={<Admin />} />
+              <Route path='/book_store/admin/orders' element={<AdminOrders />} />
+              <Route path='/book_store/admin/orders/edit/:id' element={<AdminOrdersEdit />} />
               <Route path="/book_store/admin/books" element={<AdminBooks />} />
               <Route path="/book_store/admin/books/complete" element={<AdminBookComplete />} />
               <Route path="/book_store/admin/books/edit/:id" element={<AdminBookEdit />} />
