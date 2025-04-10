@@ -77,6 +77,10 @@ const Basket = () => {
     setSum(newSum);
   }, [newSum]);
 
+  useEffect(() => {
+    console.log(BasketList);
+  }, [BasketList])
+
   function openPopup(popup) {
     popup.style.display = "block";
     setTimeout(function () {
@@ -150,7 +154,7 @@ const Basket = () => {
     event.preventDefault();
 
     BasketList.forEach((item) => {
-      for (let i = 0; i <= item.quantity; i++) {
+      for (let i = 1; i <= item.quantity; i++) {
         axios.post('http://127.0.0.1:8000/home/', { user, book_id: item.id });
         axios.delete(`http://127.0.0.1:8000/basket/`, {data:{bookId: item.id, userId: user.id}})
       }

@@ -88,7 +88,7 @@ const AdminOrders = () => {
                                     ? user.orders.map((book) => {
                                             return (
                                                 <li key={book.id} className="product-list__item">
-                                                    <Link to={`/book_store/admin/orders/edit/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
+                                                    <Link to={`/book_store/admin/orders/edit/${book.id}`} className="new-products__item-link">
                                                         <Book
                                                             key={book.book.id}
                                                             id={book.book.id}
