@@ -1,0 +1,40 @@
+.main {
+    text-align: center;
+}
+
+.profile__title {
+    font-weight: 900;
+    font-size: 40px;
+}
+
+.already-view {
+    margin-top: 80px;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 100px;
+    gap: 20px;
+}
+
+.link {
+    background-color: rgba(225, 106, 0, 1);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.link:hover {
+    transform: scale(1.05);
+}
+
+.new-products__text {
+    font-size: 20px;
+}

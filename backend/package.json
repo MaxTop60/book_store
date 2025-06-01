@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "django": "^99.99.99",
+    "react": "^19.0.0"
+  }
+}
