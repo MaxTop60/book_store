@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.conf import settings
 from .models import Book, BookReview, BookCategory, User, Basket, Group, Permission, AlreadyView, Order, Favourites
 
 class BookCategorySerializer(serializers.ModelSerializer):
@@ -13,6 +14,15 @@ class BookCategorySerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     category = BookCategorySerializer(many=True, required=False)
+    image = serializers.SerializerMethodField()
+    
+    def get_image(self, obj):
+        if obj.image:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.image.url)
+            return f"{settings.FULL_MEDIA_URL}{obj.image.name}"
+        return None
 
     class Meta:
         model = Book
