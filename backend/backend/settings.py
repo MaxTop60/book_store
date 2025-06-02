@@ -188,7 +188,7 @@ SIMPLE_JWT = {
 }
 
 if 'RENDER' in os.environ:
-    PRODUCTION_DOMAIN = 'https://your-render-service.onrender.com'  # Замените на ваш реальный домен
+    PRODUCTION_DOMAIN = 'https://book-store-2-etwn.onrender.com/'  # Замените на ваш реальный домен
     MEDIA_URL = f'{PRODUCTION_DOMAIN}/media/'
 
 AUTH_USER_MODEL = 'backend_api.User'
