@@ -14,10 +14,6 @@ class BookCategorySerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     category = BookCategorySerializer(many=True, required=False)
-    img = serializers.SerializerMethodField()
-
-    def get_image_url(self, obj):
-        return obj.get_absolute_image_url()
     
     class Meta:
         model = Book
