@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 
 import './style.css';
 
-import loading from '../../img/loading.png'
+import loading from '../../img/loading.png';
+
+import { ApiCheckAuth, ApiGetUsers, ApiChangeOrderStatus } from "../../API/API";
 
 const AdminOrdersEdit = () => {
     const { id } = useParams();
@@ -40,18 +42,8 @@ const AdminOrdersEdit = () => {
   
     useEffect(() => {
       (async () => {
-        const token = localStorage.getItem("access_token");
-        if (token) {
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          try {
-            const response = await axios.get("http://127.0.0.1:8000/home/");
-            setData(response.data);
-          } catch (error) {
-            console.error(error);
-          }
-        } else {
-          console.error("Токен авторизации не найден");
-        }
+        const dataAuth = await ApiCheckAuth();
+        setData(dataAuth);
       })();
     }, [isAuth]);
   
@@ -79,7 +71,7 @@ const AdminOrdersEdit = () => {
 
     useEffect(() => {
         (async () => {
-            const response = await axios.get('http://127.0.0.1:8000/user/');
+            const response = await ApiGetUsers();
             setUsersData(response.data);
         })();
     }, [])
@@ -108,7 +100,7 @@ const AdminOrdersEdit = () => {
     const statusSubmit = () => {
         try {
             (async () => {
-                const response = await axios.put(`http://127.0.0.1:8000/orders/`, {'id': item.id, 'status': item.status});
+                const response = await ApiChangeOrderStatus(item);
                 console.log(response);
             })();
 

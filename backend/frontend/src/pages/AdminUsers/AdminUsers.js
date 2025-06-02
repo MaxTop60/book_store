@@ -3,6 +3,8 @@ import axios from 'axios';
 import User from "../../components/User/User";
 import './style.css'
 
+import { ApiCheckAuth, ApiGetUsers } from "../../API/API";
+
 const AdminUsers = () => {
     const [user, setUser] = useState({basketList: [], groups: [{name: 'Администратор'}]});
 
@@ -19,18 +21,8 @@ const AdminUsers = () => {
   
     useEffect(() => {
       (async () => {
-        const token = localStorage.getItem("access_token");
-        if (token) {
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          try {
-            const response = await axios.get("http://127.0.0.1:8000/home/");
-            setUserData(response.data);
-          } catch (error) {
-            console.error(error);
-          }
-        } else {
-          console.error("Токен авторизации не найден");
-        }
+        const dataAuth = await ApiCheckAuth();
+        setUserData(dataAuth);
       })();
     }, [isAuth]);
 
@@ -55,7 +47,7 @@ const AdminUsers = () => {
     
     useEffect(() => {
         (async () => {
-            const response = await axios.get('http://127.0.0.1:8000/user/');
+            const response = await ApiGetUsers();
             setData(response.data);
         })();
     }, [])

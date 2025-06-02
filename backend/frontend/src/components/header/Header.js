@@ -6,7 +6,7 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import sqrollToHeader from "../../helpers/ScrollToHeader";
-import { ApiGetBooks } from "../../API/API";
+import { ApiGetBooks, ApiCheckAuth, ApiGetUserBasket } from "../../API/API";
 
 import logo from "../../img/logo.svg";
 import search from "../../img/search_icon.svg";
@@ -54,7 +54,9 @@ const Header = () => {
     let [searchList, setSearchList] = useState([]);
 
     const [BooksList, setBooksList] = useState([]);
-    const [BasketList, setBasketList] = useState([]);
+    const [BasketList, setBasketList] = useState([{
+        quantity: 0,
+    }]);
     const [data, setData] = useState([])
     const [user, setUser] = useState({basketList: []});
     
@@ -73,41 +75,23 @@ const Header = () => {
 
         useEffect(() => {
             (async () => {
-              const token = localStorage.getItem("access_token");
-              if (token) {
-                axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-                try {
-                  const response = await axios.get("http://127.0.0.1:8000/home/");
-                  setData(response.data);
-                } catch (error) {
-                  console.error(error);
-                }
-              } else {
-                console.error("Токен авторизации не найден");
-              }
-            })();
+                const dataAuth = await ApiCheckAuth();
+                setData(dataAuth);
+            })()
           }, [isAuth]);
         
           useEffect(() => {
             if (data) {
                 setUser(data);
-                console.log(user);
-        
+                console.log(data);
                 (async () => {
-                    const token = localStorage.getItem("access_token");
-                    if (token) {
-                      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-                      console.log(user);
-                      try {
-                        const response = await axios.get(`http://127.0.0.1:8000/basket/?userId=${user.id}`);
-                        setBasketList(response.data);
-                      } catch (error) {
-                        console.error(error);
-                      }
-                    } else {
-                      console.error("Токен авторизации не найден");
+                    const basketData = await ApiGetUserBasket(data);
+                    console.log(basketData);
+                    if (basketData) {
+                        setBasketList(basketData);
                     }
-                  })();
+                })();
+                console.log(BasketList);
             }
           }, [data]);
 

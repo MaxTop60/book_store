@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ApiUserChangeRole } from "../../API/API";
 import './style.css'
 
 const User = (props) => {
@@ -81,9 +82,7 @@ const User = (props) => {
         }
 
         try {
-            (async () => {
-                axios.put('http://127.0.0.1:8000/user/', newUser);
-            })();
+            ApiUserChangeRole(newUser);
 
             alert('Роль пользователя успешно изменена!');
         } catch (e) {

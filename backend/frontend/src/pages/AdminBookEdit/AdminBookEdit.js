@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { ApiGetBooks } from "../../API/API";
+import { ApiGetBooks, ApiCheckAuth, ApiPostBook } from "../../API/API";
 
 const AdminBookEdit = () => {
   const [user, setUser] = useState({basketList: []});
@@ -19,18 +19,8 @@ const AdminBookEdit = () => {
   
     useEffect(() => {
       (async () => {
-        const token = localStorage.getItem("access_token");
-        if (token) {
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          try {
-            const response = await axios.get("http://127.0.0.1:8000/home/");
-            setData(response.data);
-          } catch (error) {
-            console.error(error);
-          }
-        } else {
-          console.error("Токен авторизации не найден");
-        }
+        const dataAuth = await ApiCheckAuth();
+        setData(dataAuth);
       })();
     }, [isAuth]);
 
@@ -100,7 +90,7 @@ const AdminBookEdit = () => {
 
     console.log(formData);
 
-    const response = await axios.put(`http://127.0.0.1:8000`, formData);
+    const response = ApiPostBook(formData);
     if (response && response.status) {
       console.log(response.status);
     }

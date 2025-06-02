@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Book from "../../components/Book/Book";
 import sqrollToHeader from "../../helpers/ScrollToHeader";
+import { ApiCheckAuth } from "../../API/API";
 
 const Favourites = () => {
     const [BooksList, setBooksList] = useState([]);
@@ -21,18 +22,8 @@ const Favourites = () => {
 
     useEffect(() => {
         (async () => {
-        const token = localStorage.getItem("access_token");
-        if (token) {
-            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-            try {
-            const response = await axios.get("http://127.0.0.1:8000/home/");
-            setData(response.data);
-            } catch (error) {
-            console.error(error);
-            }
-        } else {
-            console.error("Токен авторизации не найден");
-        }
+        const dataAuth = await ApiCheckAuth();
+                        setData(dataAuth);
         })();
     }, [isAuth]);
 

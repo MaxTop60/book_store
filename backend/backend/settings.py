@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     "corsheaders",
     'sendgrid',
     "backend_api",
-    "frontend",
 ]
 
 DEFAULT_FROM_EMAIL = 'maxsimtorub@gmail.com'

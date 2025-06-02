@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/book_store/static/css/main.fc0d4233.css",
+    "main.js": "/book_store/static/js/main.7596e055.js",
+    "static/js/845.9d9f7bf1.chunk.js": "/book_store/static/js/845.9d9f7bf1.chunk.js",
+    "static/media/book02.svg": "/book_store/static/media/book02.98c036e98b816112778fd9e33fccc71a.svg",
+    "static/media/book04.svg": "/book_store/static/media/book04.fd5fe644d400888c74dab680090a51ae.svg",
+    "static/media/book05.svg": "/book_store/static/media/book05.f22947ba419383d4ab63fc0284bac6c8.svg",
+    "static/media/book01.svg": "/book_store/static/media/book01.d2c6dabe999e6e3d69c51e6fc2034437.svg",
+    "static/media/Montserrat-Bold.woff2": "/book_store/static/media/Montserrat-Bold.74353369e12619cf924f.woff2",
+    "static/media/Montserrat-ExtraBold.woff2": "/book_store/static/media/Montserrat-ExtraBold.2513e770576523e58192.woff2",
+    "static/media/Montserrat-Regular.woff2": "/book_store/static/media/Montserrat-Regular.0215145d364e809bc7cc.woff2",
+    "static/media/star.png": "/book_store/static/media/star.190d870d386afd29523a.png",
+    "static/media/star_active.png": "/book_store/static/media/star_active.618d11e122cbca3f8e9e.png",
+    "static/media/inst_icon.svg": "/book_store/static/media/inst_icon.0a4de45022b329a2ad61f87ba06637fa.svg",
+    "static/media/logo.svg": "/book_store/static/media/logo.e304785377e70f576bd2512d4ce5d07f.svg",
+    "static/media/logo_light.svg": "/book_store/static/media/logo_light.b2b5e636a5aa293ab99fa64afb21e3ed.svg",
+    "static/media/basket_icon.svg": "/book_store/static/media/basket_icon.23c390bea4ce42d2672a272149aa40c1.svg",
+    "static/media/search_icon.svg": "/book_store/static/media/search_icon.234b33eb076562ae7c255ab159fc1f5a.svg",
+    "static/media/search_icon_light.svg": "/book_store/static/media/search_icon_light.76267ce78e608e2fbd54f4548949d66f.svg",
+    "static/media/vk_icon.svg": "/book_store/static/media/vk_icon.ea5f9b2432fd1d5ec36732eb2d1f0c16.svg",
+    "static/media/twitter_icon.svg": "/book_store/static/media/twitter_icon.e859a98e01e9ef4223e1d948eeb3c25e.svg",
+    "static/media/youtube_icon.svg": "/book_store/static/media/youtube_icon.8e4765af7aa0b49a8f00f3da8cc9e72f.svg",
+    "index.html": "/book_store/index.html",
+    "static/media/facebook_icon.svg": "/book_store/static/media/facebook_icon.098015d71f2fbc5d23c2f9c6b9a484cf.svg",
+    "static/media/menu_button.svg": "/book_store/static/media/menu_button.af3084575e475b9ffee6098f23b47ebe.svg",
+    "static/media/close_icon.svg": "/book_store/static/media/close_icon.90a70014b365b7fb9aa0c5267bebeca3.svg",
+    "static/media/navigate_arrow.svg": "/book_store/static/media/navigate_arrow.f991754ff98af093500128240b0d2715.svg",
+    "main.fc0d4233.css.map": "/book_store/static/css/main.fc0d4233.css.map",
+    "main.7596e055.js.map": "/book_store/static/js/main.7596e055.js.map",
+    "845.9d9f7bf1.chunk.js.map": "/book_store/static/js/845.9d9f7bf1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc0d4233.css",
+    "static/js/main.7596e055.js"
+  ]
+}
