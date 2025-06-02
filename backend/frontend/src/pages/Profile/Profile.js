@@ -8,6 +8,8 @@ import navArrow from "../../img/navigate_arrow.svg";
 import sqrollToHeader from "../../helpers/ScrollToHeader";
 import Book from "../../components/Book/Book";
 
+import { ApiCheckAuth } from "../../API/API";
+
 const Profile = () => {
   const [user, setUser] = useState({ basketList: [], groups: [{ name: "" }], orders: [] });
   const [alreadyView, setAlreadyView] = useState([]);
@@ -25,18 +27,8 @@ const Profile = () => {
 
   useEffect(() => {
     (async () => {
-      const token = localStorage.getItem("access_token");
-      if (token) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        try {
-          const response = await axios.get("http://127.0.0.1:8000/home/");
-          setData(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      } else {
-        console.error("Токен авторизации не найден");
-      }
+      const dataAuth = await ApiCheckAuth();
+                      setData(dataAuth);
     })();
   }, [isAuth]);
 

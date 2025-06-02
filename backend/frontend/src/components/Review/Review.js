@@ -5,6 +5,8 @@ import del from "../../img/delete_icon.svg";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
+import { ApiCheckAuth, ApiDeleteReview } from "../../API/API";
+
 const Review = (props) => {
     const [user, setUser] = useState({groups: [{name: ''}]});
     const [isAuth, setIsAuth] = useState(false);
@@ -20,19 +22,9 @@ const Review = (props) => {
   
     useEffect(() => {
       (async () => {
-          const token = localStorage.getItem('access_token');
-          if (token) {
-              axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-              try {
-                  const response = await axios.get("http://127.0.0.1:8000/home/");
-                  setData(response.data);
-                  setUser(response.data.user);
-              } catch (error) {
-                  console.error(error);
-              }
-          } else {
-              console.error('Токен авторизации не найден');
-          }
+          const dataAuth = await ApiCheckAuth();
+          setData(dataAuth);
+          setUser(dataAuth.user);
       })()
   }, [isAuth]);
   
@@ -45,14 +37,7 @@ const Review = (props) => {
         const result = window.confirm('Удалить отзыв?');
 
         if (result) {
-            axios.delete(`http://127.0.0.1:8000/product/:id`, {data: {id: id}})
-                .then(res => {
-                    console.log(res);
-                    window.location.reload();
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+            ApiDeleteReview(id);
         }
     }
 

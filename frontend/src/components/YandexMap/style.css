@@ -1,0 +1,20 @@
+.maps {
+    min-width: 200px;
+    max-width: 700px;
+
+    height: 500px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.maps__search {
+    position: absolute;
+    z-index: 1;
+    top : 10px;
+    left: 10px;
+    background-color: rgb(230, 230, 230);
+    border: none;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 5px;
+}

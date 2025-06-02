@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 
 import sqrollToHeader from "../../helpers/ScrollToHeader";
 
+import { ApiGetUserBasket, ApiCheckAuth } from "../../API/API";
+
 const Basket_Elem = (props) => {
   let price = props.price;
   let [number, setNumber] = useState(props.number);
@@ -28,19 +30,9 @@ const Basket_Elem = (props) => {
 
   useEffect(() => {
     (async () => {
-      const token = localStorage.getItem("access_token");
-      if (token) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        try {
-          const response = await axios.get("http://127.0.0.1:8000/home/");
-          setData(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      } else {
-        console.error("Токен авторизации не найден");
-      }
-    })();
+      const dataAuth = await ApiCheckAuth();
+      setData(dataAuth);
+    })()
   }, [isAuth]);
 
   useEffect(() => {
@@ -49,22 +41,9 @@ const Basket_Elem = (props) => {
       console.log(user);
 
       (async () => {
-        const token = localStorage.getItem("access_token");
-        if (token) {
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          console.log(user);
-          try {
-            const response = await axios.get(
-              `http://127.0.0.1:8000/basket/?userId=${user.id}`
-            );
-            setBasketList(response.data);
-          } catch (error) {
-            console.error(error);
-          }
-        } else {
-          console.error("Токен авторизации не найден");
-        }
-      })();
+        const dataBasket = await ApiGetUserBasket(data);
+        setBasketList(dataBasket);
+      })()
     }
   }, [data]);
 

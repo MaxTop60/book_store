@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { ApiCheckAuth } from "../../API/API";
 
 const Admin = () => {
     const [user, setUser] = useState({basketList: [], groups: [{name: 'Менеджер'}]});
@@ -18,19 +19,9 @@ const Admin = () => {
   
     useEffect(() => {
       (async () => {
-        const token = localStorage.getItem("access_token");
-        if (token) {
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          try {
-            const response = await axios.get("http://127.0.0.1:8000/home/");
-            setData(response.data);
-          } catch (error) {
-            console.error(error);
-          }
-        } else {
-          console.error("Токен авторизации не найден");
-        }
-      })();
+        const dataAuth = await ApiCheckAuth();
+        setData(dataAuth);
+      })()
     }, [isAuth]);
 
     useEffect(() => {

@@ -7,6 +7,8 @@ import Book from "../../components/Book/Book";
 
 import sqrollToHeader from "../../helpers/ScrollToHeader";
 
+import { ApiCheckAuth, ApiGetUsers } from "../../API/API";
+
 import './style.css';
 
 const AdminOrders = () => {
@@ -25,18 +27,8 @@ const AdminOrders = () => {
   
     useEffect(() => {
       (async () => {
-        const token = localStorage.getItem("access_token");
-        if (token) {
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          try {
-            const response = await axios.get("http://127.0.0.1:8000/home/");
-            setUserData(response.data);
-          } catch (error) {
-            console.error(error);
-          }
-        } else {
-          console.error("Токен авторизации не найден");
-        }
+        const dataAuth = await ApiCheckAuth();
+        setUserData(dataAuth);
       })();
     }, [isAuth]);
 
@@ -61,7 +53,7 @@ const AdminOrders = () => {
     
     useEffect(() => {
         (async () => {
-            const response = await axios.get('http://127.0.0.1:8000/user/');
+            const response = await ApiGetUsers();
             setData(response.data);
         })();
     }, [])
@@ -88,7 +80,7 @@ const AdminOrders = () => {
                                     ? user.orders.map((book) => {
                                             return (
                                                 <li key={book.id} className="product-list__item">
-                                                    <Link to={`/book_store/admin/orders/edit/${book.id}`} className="new-products__item-link" onClick={sqrollToHeader}>
+                                                    <Link to={`/book_store/admin/orders/edit/${book.id}`} className="new-products__item-link">
                                                         <Book
                                                             key={book.book.id}
                                                             id={book.book.id}

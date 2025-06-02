@@ -6,6 +6,8 @@ import axios from "axios";
 
 import sqrollToHeader from "../../helpers/ScrollToHeader";
 
+import { ApiLogin } from "../../API/API";
+
 import "./style.css";
 
 const Auth = () => {
@@ -20,29 +22,7 @@ const Auth = () => {
             password: password
         };
 
-        const config = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            withCredentials: true,
-        };
-
-        try {
-            const {data} = await axios.post('http://127.0.0.1:8000/token/', user, config)
-
-            localStorage.clear();
-            localStorage.setItem('access_token', data.access);
-            localStorage.setItem('refresh_token', data.refresh);
-            axios.defaults.headers.common['Authorization'] = `Bearer ${data.access}`;
-            window.location.href = '/book_store';
-        } catch(error) {
-            if (error.response && error.response.data) {
-                alert('Неверный логин или пароль');
-            } else {
-                alert('Произошла ошибка');
-            }
-        }
+        ApiLogin(user);
     }
 
     return ( 

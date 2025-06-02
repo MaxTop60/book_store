@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
+import { ApiRegister } from "../../API/API";
 
 import { Link } from "react-router-dom";
 
@@ -23,26 +24,8 @@ const Registration = () => {
                 password: password
             };
 
-            const config = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                withCredentials: true,
-            };
-
-            try {
-                await axios.post('http://127.0.0.1:8000/register/', user, config)
-                window.location.href ='/book_store/auth';
-
-                alert('Пользователь успешно зарегистрирован');
-            } catch(error) {
-                if (error.response && error.response.data) {
-                    alert(error.response.data.email[0]);
-                } else {
-                    alert('Произошла ошибка');
-                }
-            }
+            ApiRegister(user);
+            
         } else {
             alert('Пароли не совпадают');
         }   

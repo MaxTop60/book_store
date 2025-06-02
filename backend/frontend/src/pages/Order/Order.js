@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import loading from "../../img/loading.png";
 import "./style.css";
+import { ApiCheckAuth } from "../../API/API";
 
 const Order = () => {
   const { id } = useParams();
@@ -35,18 +36,8 @@ const Order = () => {
 
   useEffect(() => {
     (async () => {
-      const token = localStorage.getItem("access_token");
-      if (token) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        try {
-          const response = await axios.get("http://127.0.0.1:8000/home/");
-          setData(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      } else {
-        console.error("Токен авторизации не найден");
-      }
+      const dataAuth = await ApiCheckAuth();
+                      setData(dataAuth);
     })();
   }, [isAuth]);
 

@@ -9,6 +9,8 @@ import { useState, useMemo, useEffect } from "react";
 import axios from "axios";
 import emailjs from 'emailjs-com';
 
+import { ApiCheckAuth, ApiGetUserBasket } from "../../API/API";
+
 import "./style.css";
 
 const Basket = () => {
@@ -30,18 +32,8 @@ const Basket = () => {
 
   useEffect(() => {
     (async () => {
-      const token = localStorage.getItem("access_token");
-      if (token) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        try {
-          const response = await axios.get("http://127.0.0.1:8000/home/");
-          setData(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      } else {
-        console.error("Токен авторизации не найден");
-      }
+      const dataAuth = await ApiCheckAuth();
+      setData(dataAuth);
     })();
   }, [isAuth]);
 
@@ -51,19 +43,11 @@ const Basket = () => {
         console.log(user);
 
         (async () => {
-            const token = localStorage.getItem("access_token");
-            if (token) {
-              axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-              console.log(user);
-              try {
-                const response = await axios.get(`http://127.0.0.1:8000/basket/?userId=${user.id}`);
-                setBasketList(response.data);
-              } catch (error) {
-                console.error(error);
-              }
-            } else {
-              console.error("Токен авторизации не найден");
-            }
+            const basketData = await ApiGetUserBasket(data);
+                                console.log(basketData);
+                                if (basketData) {
+                                    setBasketList(basketData);
+                                }
           })();
     }
   }, [data]);
@@ -76,6 +60,10 @@ const Basket = () => {
   useEffect(() => {
     setSum(newSum);
   }, [newSum]);
+
+  useEffect(() => {
+    console.log(BasketList);
+  }, [BasketList])
 
   function openPopup(popup) {
     popup.style.display = "block";
@@ -150,7 +138,7 @@ const Basket = () => {
     event.preventDefault();
 
     BasketList.forEach((item) => {
-      for (let i = 0; i <= item.quantity; i++) {
+      for (let i = 1; i <= item.quantity; i++) {
         axios.post('http://127.0.0.1:8000/home/', { user, book_id: item.id });
         axios.delete(`http://127.0.0.1:8000/basket/`, {data:{bookId: item.id, userId: user.id}})
       }
