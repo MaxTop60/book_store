@@ -32,6 +32,12 @@ class Book(models.Model):
     author = models.CharField(max_length=100)
     price = models.IntegerField()
     img = models.ImageField(upload_to="images/")
+
+    def get_absolute_image_url(self):
+        if not self.image:
+            return None
+        return f"https://book-store-2-etwn.onrender.com{self.img.url}"
+        
     category = models.ManyToManyField(BookCategory, blank=True)
     quantity = models.PositiveIntegerField(default=1)
 
