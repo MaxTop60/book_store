@@ -188,14 +188,8 @@ SIMPLE_JWT = {
 }
 
 if 'RENDER' in os.environ:
-    # Базовый URL для медиафайлов в production
-    MEDIA_URL = '/media/'
-    # Полный абсолютный URL (замените на ваш реальный домен)
-    FULL_MEDIA_URL = 'https://your-render-service.onrender.com/media/'
-else:
-    # Настройки для development
-    MEDIA_URL = '/media/'
-    FULL_MEDIA_URL = 'https://book-store-2-etwn.onrender.com/media/'
+    PRODUCTION_DOMAIN = 'https://your-render-service.onrender.com'  # Замените на ваш реальный домен
+    MEDIA_URL = f'{PRODUCTION_DOMAIN}/media/'
 
 AUTH_USER_MODEL = 'backend_api.User'
 CORS_ALLOW_CREDENTIALS = True
