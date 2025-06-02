@@ -2,6 +2,12 @@ from rest_framework import serializers
 from django.conf import settings
 from .models import Book, BookReview, BookCategory, User, Basket, Group, Permission, AlreadyView, Order, Favourites
 
+class AbsoluteURLImageField(serializers.ImageField):
+    def to_representation(self, value):
+        if not value:
+            return None
+        return f"{settings.MEDIA_URL}{value.name}"
+
 class BookCategorySerializer(serializers.ModelSerializer):
     class Meta: 
         model = BookCategory
@@ -14,16 +20,8 @@ class BookCategorySerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     category = BookCategorySerializer(many=True, required=False)
-    image = serializers.SerializerMethodField()
+    image = AbsoluteURLImageField()
     
-    def get_image(self, obj):
-        if obj.image:
-            request = self.context.get('request')
-            if request:
-                return request.build_absolute_uri(obj.image.url)
-            return f"{settings.FULL_MEDIA_URL}{obj.image.name}"
-        return None
-
     class Meta:
         model = Book
         fields = ('id', 'title','author','price','img', 'category', 'quantity')
