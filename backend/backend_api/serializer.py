@@ -14,12 +14,10 @@ class BookCategorySerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     category = BookCategorySerializer(many=True, required=False)
-    image = serializers.SerializerMethodField()
+    img = serializers.SerializerMethodField()
 
-    def get_image(self, obj):
-        if not obj.image:
-            return None
-        return f"{settings.PRODUCTION_BASE_URL}{obj.image.url}"
+    def get_image_url(self, obj):
+        return obj.get_absolute_image_url()
     
     class Meta:
         model = Book
