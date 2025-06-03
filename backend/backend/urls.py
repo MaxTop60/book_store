@@ -39,4 +39,18 @@ urlpatterns = [
     path("already_view/", AlreadyViewView.as_view())
 ]
 
-urlpatterns += [re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})]
+if settings.DEBUG:
+    # Локальная разработка
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    # Продакшен на Render.com
+    urlpatterns += [
+        re_path(
+            r'^media/(?P<path>.*)$',
+            cache_control(max_age=3600)(serve),
+            {
+                'document_root': settings.MEDIA_ROOT,
+                'show_indexes': False  # Скрыть листинг файлов
+            }
+        ),
+    ]
