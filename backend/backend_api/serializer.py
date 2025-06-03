@@ -14,10 +14,16 @@ class BookCategorySerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     category = BookCategorySerializer(many=True, required=False)
+    img_url = serializers.SerializerMethodField()
+    
+    def get_img_url(self, obj):
+        if not obj.img:
+            return None
+        return f"{settings.MEDIA_FULL_URL}{obj.img.name}"  # Используем полный URL
     
     class Meta:
         model = Book
-        fields = ('id', 'title','author','price','img', 'category', 'quantity')
+        fields = ('id', 'title','author','price','img_url', 'category', 'quantity')
 
   
 
