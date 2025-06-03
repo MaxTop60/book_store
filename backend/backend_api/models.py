@@ -35,6 +35,12 @@ class Book(models.Model):
     category = models.ManyToManyField(BookCategory, blank=True)
     quantity = models.PositiveIntegerField(default=1)
 
+    @property
+    def img_url(self):
+        if self.img:
+            return f"{settings.MEDIA_FULL_URL}{self.img.name}"
+        return None
+
 class User(AbstractUser):
     username = models.CharField(max_length=100, unique=True)
     email = models.CharField(max_length=100, unique=True)
