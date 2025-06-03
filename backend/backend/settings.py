@@ -188,11 +188,12 @@ SIMPLE_JWT = {
 }
 
 if 'RENDER' in os.environ:
-    # Настройки для продакшена
-    STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    PRODUCTION_DOMAIN = 'https://book-store-2-etwn.onrender.com'  # Замените на ваш домен
+else:
+    PRODUCTION_DOMAIN = 'http://127.0.0.1:8000'  # Для разработки
+
+# Полный URL для медиафайлов
+MEDIA_FULL_URL = urljoin(PRODUCTION_DOMAIN, MEDIA_URL)
 
 AUTH_USER_MODEL = 'backend_api.User'
 CORS_ALLOW_CREDENTIALS = True
